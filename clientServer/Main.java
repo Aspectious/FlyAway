@@ -1,5 +1,3 @@
-package net.eastern.FlyAway;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -16,7 +14,7 @@ public class Main {
   static class MyHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange t) throws IOException {
-      String response = "This is the response";
+      String response = "Farhan balls";
       t.sendResponseHeaders(200,response.length());
       OutputStream os = t.getResponseBody();
       os.write(response.getBytes());
