@@ -18,6 +18,10 @@ public class Main {
   static class MyHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange t) throws IOException {
+
+      // Print Debug info for request
+      System.out.println("[Info] New Request, origin \"" + t.getRemoteAddress().getAddress() + ":" + t.getRemoteAddress().getPort() + "\", target \"" + t.getRequestURI() + "\"");
+
       String response = "200 OK";
       t.sendResponseHeaders(200,response.length());
       OutputStream os = t.getResponseBody();
