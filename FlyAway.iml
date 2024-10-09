@@ -4,6 +4,8 @@
     <output url="file://$MODULE_DIR$/bin/dev/FlyAway" />
     <output-test url="file://$MODULE_DIR$/bin/test/FlyAway" />
     <exclude-output />
+    <content url="file://$MODULE_DIR$/bin" />
+    <content url="file://$MODULE_DIR$/build" />
     <content url="file://$MODULE_DIR$/res">
       <sourceFolder url="file://$MODULE_DIR$/res" type="java-resource" />
     </content>
