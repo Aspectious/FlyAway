@@ -8,11 +8,11 @@ public class Dbm {
     private Connection dbconn;
     public Dbm() {
         // For Testing
-        attemptConnection("jdbc:mysql://localhost:3306/records", "java",System.getenv("FLYAWAY_DBM_PWD"));
+        attemptConnection("jdbc:mysql://localhost:3306/FlyAway", "java",System.getenv("FLYAWAY_DBM_PWD"));
     }
 
     /*
-        For Production, the url will be jdbc:mysql://localhost:3306/records
+        For Production, the url will be jdbc:mysql://localhost:3306/FlyAway
         Username java, password is a hashed secret in an Environmental Variable
         Feel Free to use any other url or user/pass combo for dev
         TODO: NEVER PUT ANY RAW PASSWORDS IN AND COMMIT, IT IS MOSTLY IRREVERSIBLE
