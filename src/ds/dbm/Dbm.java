@@ -3,12 +3,18 @@ package net.eastern.FlyAway.dbm;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 public class Dbm {
     private Connection dbconn;
     public Dbm() {
         // For Testing
         attemptConnection("jdbc:mysql://localhost:3306/FlyAway", "java",System.getenv("FLYAWAY_DBM_PWD"));
+    }
+
+    public Connection getConnection() {
+        return this.dbconn;
     }
 
     /*
