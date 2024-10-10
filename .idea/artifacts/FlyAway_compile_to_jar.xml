@@ -8,7 +8,6 @@
       <element id="module-output" name="FlyAway" />
       <element id="dir-copy" path="$PROJECT_DIR$/res" />
       <element id="library" level="project" name="mysql-connector-j" />
-      <element id="file-copy" path="$PROJECT_DIR$/lib/mysql-connector-j-9.0.0.jar" />
     </root>
   </artifact>
 </component>
