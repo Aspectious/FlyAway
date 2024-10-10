@@ -19,6 +19,7 @@ public class Dbm {
      */
     public void attemptConnection(String url, String user, String pass) {
         System.out.println("Attempting to connect to " + url);
+        System.out.println(System.getenv("FLYAWAY_DBM_PWD"));
         try (Connection connection = DriverManager.getConnection(url, user, pass)) {
             System.out.println("Successfully connected to " + url);
             this.dbconn = connection;

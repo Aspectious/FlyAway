@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Build/Run Server (dev)" type="Application" factoryName="Application">
+  <configuration default="false" name="Run Server (dev)" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="net.eastern.FlyAway.Main" />
     <module name="FlyAway" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
