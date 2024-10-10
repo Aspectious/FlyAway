@@ -19,12 +19,13 @@ public class Input {
         try {
             sstmt = String.valueOf(sid);
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT foo FROM bar");
+            rs = stmt.executeQuery("SELECT studentid FROM users");
             // or alternatively, if you don't know ahead of time that
             // the query will be a SELECT...
             try {
-                if (stmt.execute("SELECT foo FROM bar")) {
+                if (stmt.execute("SELECT studentid FROM users")) {
                     rs = stmt.getResultSet();
+                    System.out.println(rs.getInt(0));
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
