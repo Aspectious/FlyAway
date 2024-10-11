@@ -10,11 +10,35 @@ public class Dbm {
     private Connection dbconn;
     public Dbm() {
         // For Testing
-        attemptConnection("jdbc:mysql://localhost:3306/flyawaydev", "josh",("p@ssw0rd123"));
+        attemptConnection("jdbc:mysql://75.18.104.248:3306/flyawaydev", "aspectious",("p@ssw0rd123"));
     }
 
     public Connection getConnection() {
         return this.dbconn;
+    }
+    
+    public DbmResponse executeSQL(String query) throws SQLException {
+        Statement stmt = this.dbconn.createStatement();
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery(query);
+            System.out.println("Query executed");
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+
+        int times = 0;
+        String resparray = "";
+        while (rs.next()) {
+            times++;
+            resparray += rs.getString(1);
+            System.out.println(rs.getString(1));
+        }
+        System.out.println("times executed: " + times);
+        if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
+        if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparray);
+        else return new DbmResponse(DbmResponseType.ResponseList, times, new String[0]);
     }
 
     /*
