@@ -10,7 +10,7 @@ public class Dbm {
     private Connection dbconn;
     public Dbm() {
         // For Testing
-        attemptConnection("jdbc:mysql://localhost:3306/FlyAway", "java",System.getenv("FLYAWAY_DBM_PWD"));
+        attemptConnection("jdbc:mysql://localhost:3306/flyawaydev", "josh",("p@ssw0rd123"));
     }
 
     public Connection getConnection() {
