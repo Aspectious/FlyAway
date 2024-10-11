@@ -8,14 +8,14 @@ import java.sql.*;
 public class Dbm {
     private Connection dbconn;
     public Dbm() {
-        String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
+        String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/FlyAway";
         String username = System.getenv("FLA_U");
         String pwd = System.getenv("FLA_P");
         dbconn = this.attemptConnection(url,username,pwd);
     }
 
     public Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
+        String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/FlyAway";
         String username = System.getenv("FLA_U");
         String pwd = System.getenv("FLA_P");
         Connection conn = DriverManager.getConnection(url, username, pwd);
