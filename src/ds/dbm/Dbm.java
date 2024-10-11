@@ -9,19 +9,22 @@ import java.sql.ResultSet;
 public class Dbm {
     private Connection dbconn;
     public Dbm() {
-        // For Testing
-        attemptConnection("jdbc:mysql://75.18.104.248:3306/flyawaydev", "aspectious",("p@ssw0rd123"));
+
     }
 
     public Connection getConnection() {
         return this.dbconn;
     }
-    
-    public DbmResponse executeSQL(String query) throws SQLException {
+
+    public DbmResponse executeSQL(String sql) throws SQLException {
+        String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
+        String username = System.getenv("FLA_U");
+        String pwd = System.getenv("FLA_P");
+        this.attemptConnection(url,username,pwd);
         Statement stmt = this.dbconn.createStatement();
         ResultSet rs = null;
         try {
-            rs = stmt.executeQuery(query);
+            rs = stmt.executeQuery(sql);
             System.out.println("Query executed");
 
         } catch (SQLException e) {
@@ -35,10 +38,20 @@ public class Dbm {
             resparray += rs.getString(1);
             System.out.println(rs.getString(1));
         }
+        this.closeConnection();
         System.out.println("times executed: " + times);
         if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
         if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparray);
         else return new DbmResponse(DbmResponseType.ResponseList, times, new String[0]);
+    }
+
+    public void closeConnection() {
+        try {
+            System.out.println("Closing Connection");
+            dbconn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /*
