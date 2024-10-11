@@ -21,36 +21,43 @@ public class Dbm {
         return DriverManager.getConnection(url, username, pwd);
     }
 
-    public DbmResponse executeSQL(Connection conn, String sql) throws SQLException {
+    public DbmResponse executeSQL(Connection conn, DbmQueryType qtype, String sql) throws SQLException {
         Statement stmt = conn.createStatement();
-        ResultSet rs = null;
-        try {
-            rs = stmt.executeQuery(sql);
-           ShUtils.Debugprintln("[DBM] Query Executed");
 
-        } catch (SQLException e) {
-            System.err.println("[DBM] Error: " + e);
-        }
+        if (qtype == DbmQueryType.QUERY) {
+            ResultSet rs = null;
+            try {
+                rs = stmt.executeQuery(sql);
+                ShUtils.Debugprintln("[DBM] Query Executed");
 
-        int times = 0;
-        StringBuilder resparray = new StringBuilder();
-        while (rs.next()) {
-            times++;
-            StringBuilder strresponse = new StringBuilder();
-
-            ResultSetMetaData metadata = rs.getMetaData();
-            metadata.getColumnCount();
-            for (int i=0; i<metadata.getColumnCount(); i++) {
-                strresponse.append(rs.getString(i + 1)).append(",");
+            } catch (SQLException e) {
+                System.err.println("[DBM] Error: " + e);
             }
-            strresponse.substring(0, strresponse.length()-1);
-            resparray.append(strresponse).append(",");
+
+            int times = 0;
+            StringBuilder resparray = new StringBuilder();
+            while (rs.next()) {
+                times++;
+                StringBuilder strresponse = new StringBuilder();
+
+                ResultSetMetaData metadata = rs.getMetaData();
+                metadata.getColumnCount();
+                for (int i=0; i<metadata.getColumnCount(); i++) {
+                    strresponse.append(rs.getString(i + 1)).append(",");
+                }
+                strresponse.substring(0, strresponse.length()-1);
+                resparray.append(strresponse).append(",");
+            }
+            if (!resparray.isEmpty()) resparray.substring(0, resparray.length()-1);
+            String[] resparraylist = resparray.toString().split(",");
+            if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
+            if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparraylist[0]);
+            return new DbmResponse(DbmResponseType.ResponseList, times, resparraylist);
+        } else {
+            stmt.executeUpdate(sql);
+            return new DbmResponse(DbmResponseType.ResponseEmpty);
         }
-        if (!resparray.isEmpty()) resparray.substring(0, resparray.length()-1);
-        String[] resparraylist = resparray.toString().split(",");
-        if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
-        if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparraylist[0]);
-        return new DbmResponse(DbmResponseType.ResponseList, times, resparraylist);
+
     }
 
     public void setConnection(Connection conn) {
