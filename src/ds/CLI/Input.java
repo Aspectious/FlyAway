@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.*;
 
 import net.eastern.FlyAway.dbm.Dbm;
+import net.eastern.FlyAway.dbm.DbmQueryType;
 import net.eastern.FlyAway.dbm.DbmResponse;
 import net.eastern.FlyAway.dbm.DbmResponseType;
 
@@ -98,7 +99,7 @@ public class Input {
                     // For Testing
                     Connection conn23 = dbm.getConnection();
                     dbm.setConnection(conn23);
-                    DbmResponse response2 = dbm.executeSQL(conn23, String.join(" ", args));
+                    DbmResponse response2 = dbm.executeSQL(conn23, DbmQueryType.UPDATE, String.join(" ", args));
                     if (response2.getType() == DbmResponseType.OneResponse) {
                         System.out.println(response2.getContentArray()[0]);
                     } else if (response2.getType() == DbmResponseType.ResponseEmpty) {
@@ -124,7 +125,7 @@ public class Input {
                     try {
                         dbm = new Dbm();
                         Connection conn = dbm.getConnection();
-                        DbmResponse updated = dbm.executeSQL(conn, "UPDATE users SET exitallowed = " + args[1] + " WHERE studentid = " + args[0]);
+                        DbmResponse updated = dbm.executeSQL(conn, DbmQueryType.UPDATE, "UPDATE users SET exitallowed = " + args[1] + " WHERE studentid = " + args[0]);
                         System.out.println("User updated");
                     } catch (SQLException e) {
                         System.err.println("Error: " + e);
@@ -146,7 +147,7 @@ public class Input {
                         // For Testing
                         Connection conn = dbm.getConnection();
                         dbm.setConnection(conn);
-                        DbmResponse response = dbm.executeSQL(conn, "SELECT exitallowed FROM users WHERE studentid =" + sid);
+                        DbmResponse response = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT exitallowed FROM users WHERE studentid =" + sid);
                         ShUtils.Debugprintln("[Input] Response Type" + response.getType());
                         if (response.getType() == DbmResponseType.OneResponse) {
                             System.out.println(response.getContentArray()[0]);
@@ -157,7 +158,7 @@ public class Input {
                             pstmt.setInt(1, sid);
                             pstmt.setBoolean(2, false);
                             pstmt.executeUpdate();
-                            DbmResponse nullresponse = dbm.executeSQL(conn, "SELECT studentid FROM users WHERE studentid = " + sid);
+                            DbmResponse nullresponse = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT studentid FROM users WHERE studentid = " + sid);
                             System.out.println("User added");
 
                         } else if (response.getType() == DbmResponseType.ResponseList) {
