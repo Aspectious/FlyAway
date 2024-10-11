@@ -90,7 +90,21 @@ public class Input {
                     scanfile.close();
                     break;
                 case "exec":
-                    throw new HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException("oopsie i has not been implemented yet :3");
+                    dbm = new Dbm();
+                    // For Testing
+                    Connection conn23 = dbm.getConnection();
+                    dbm.setConnection(conn23);
+                    DbmResponse response2 = dbm.executeSQL(conn23, String.join(" ", args));
+                    if (response2.getType() == DbmResponseType.OneResponse) {
+                        System.out.println(response2.getContentArray()[0]);
+                    } else if (response2.getType() == DbmResponseType.ResponseEmpty) {
+                        System.out.println("No results found");
+                    } else if (response2.getType() == DbmResponseType.ResponseList) {
+                        for (int i = 0; i < response2.getContentArray().length; i++) {
+                            System.out.println(response2.getContentArray()[i]);
+                        }
+                    }
+                break;
                 case "validate":
                     int sid = 0;
                     boolean isint = false;
@@ -113,6 +127,14 @@ public class Input {
                             System.out.println(response.getContentArray()[0]);
                         } else if (response.getType() == DbmResponseType.ResponseEmpty) {
                             System.out.println(response.getContentArray()[0]);
+                            String sql = "INSERT INTO users (studentid, exitallowed) VALUES (?, ?)";
+                            PreparedStatement pstmt = conn.prepareStatement(sql);
+                            pstmt.setInt(1, sid);
+                            pstmt.setBoolean(2, false);
+                            pstmt.executeUpdate();
+                            DbmResponse nullresponse = dbm.executeSQL(conn,"SELECT studentid FROM users WHERE studentid = " + sid);
+                            System.out.println("User added");
+
                         } else if (response.getType() == DbmResponseType.ResponseList) {
                             for (int i = 0; i < response.getContentArray().length; i++) {
                                 System.out.println(response.getContentArray()[i]);
@@ -132,7 +154,7 @@ public class Input {
                     System.err.println("[Input] Unknown command: " + command);
                     break;
             }
-        } catch (HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException e) {
+        } catch (Exception e) {
             e.printStackTrace(System.err);
             System.exit(-323138);
         }

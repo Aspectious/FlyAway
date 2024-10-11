@@ -6,5 +6,6 @@ public class HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDo
 
     public HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException(String message) {
         super(message);
+        System.err.println("you fuck up");
     }
 }
