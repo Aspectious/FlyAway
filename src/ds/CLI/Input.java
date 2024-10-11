@@ -1,7 +1,9 @@
 package net.eastern.FlyAway.CLI;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.util.InputMismatchException;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,6 +12,8 @@ import java.sql.*;
 import net.eastern.FlyAway.dbm.Dbm;
 import net.eastern.FlyAway.dbm.DbmResponse;
 import net.eastern.FlyAway.dbm.DbmResponseType;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Input {
     private Dbm dbm;
@@ -20,7 +24,6 @@ public class Input {
 
 
         /*
-        Dbm dbm = new Dbm();
 
         Statement stmt = conn.createStatement();
         ResultSet rs = null;
@@ -55,12 +58,15 @@ public class Input {
         */
     }
 
+
     public void doInputQueryCycle() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("# FLA-DS > ");
         processCommand(scanner.nextLine());
         doInputQueryCycle();
     }
+
+
     private void processCommand(String fullcommand) throws SQLException {
         String[] brokencmd = fullcommand.toLowerCase().split(" ");
         String[] args = new String[brokencmd.length-1];
@@ -68,44 +74,67 @@ public class Input {
             args[i-1] = brokencmd[i];
         }
         String command = brokencmd[0];
-        System.out.println(command);
-        for (int i=0; i< args.length; i++) {
-            System.out.println(args[i]);
-        }
-        if (Objects.equals(command, "exit")) System.exit(0);
-        if (Objects.equals(command, "validate")) {
-            int sid = 0;
-            boolean isint = false;
-            while (!isint) {
-                try {
-                    sid = Integer.parseInt(args[0]);
-                    isint = true;
-                } catch (InputMismatchException e) {
-                    System.out.println("Please enter a valid number");
-                }
-            }
-            try {
-                dbm = new Dbm();
-                // For Testing
-                DbmResponse response = dbm.executeSQL("SELECT exitallowed FROM users WHERE studentid =" + sid);
-                System.out.println(response.getType());
-                if (response.getType() == DbmResponseType.OneResponse) {
-                    System.out.println(response.getContentArray()[0]);
-                }
-                else if (response.getType() == DbmResponseType.ResponseEmpty) {
-                    System.out.println("Empty Response");
-                }
-                else if (response.getType() == DbmResponseType.ResponseList) {
-                    // We do a little Tomfoolery because I'mm too lazy to implement this yet
-                    System.out.println("HOLY FUCKING SHIT OH FUCK I HAVENT BEEN CODED TO HANDLE THAT YET IM GONNA DIE");
-                    throw new HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException("oopsie i returned multiple columns teehee :3");
-                }
+        ShUtils.Debugprintln("[Input] Running command: " + fullcommand);
+        try {
+            switch (command) {
+                case "exit":
+                    System.exit(0);
+                    break;
+                case "help":
+                    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+                    InputStream is = classloader.getResourceAsStream("cmds/help.txt");
+                    Scanner scanfile = new Scanner(is);
+                    while (scanfile.hasNextLine()) {
+                        System.out.println(scanfile.nextLine());
+                    }
+                    scanfile.close();
+                    break;
+                case "exec":
+                    throw new HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException("oopsie i has not been implemented yet :3");
+                case "validate":
+                    int sid = 0;
+                    boolean isint = false;
+                    while (!isint) {
+                        try {
+                            sid = Integer.parseInt(args[0]);
+                            isint = true;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Please enter a valid number");
+                        }
+                    }
+                    try {
+                        dbm = new Dbm();
+                        // For Testing
+                        Connection conn = dbm.getConnection();
+                        dbm.setConnection(conn);
+                        DbmResponse response = dbm.executeSQL(conn, "SELECT exitallowed FROM users WHERE studentid =" + sid);
+                        ShUtils.Debugprintln("[Input] Response Type" + response.getType());
+                        if (response.getType() == DbmResponseType.OneResponse) {
+                            System.out.println(response.getContentArray()[0]);
+                        } else if (response.getType() == DbmResponseType.ResponseEmpty) {
+                            System.out.println(response.getContentArray()[0]);
+                        } else if (response.getType() == DbmResponseType.ResponseList) {
+                            for (int i = 0; i < response.getContentArray().length; i++) {
+                                System.out.println(response.getContentArray()[i]);
+                            }
+                            // We do a little Tomfoolery because I'mm too lazy to implement this yet
+                            System.out.println("HOLY FUCKING SHIT OH FUCK I HAVENT BEEN CODED TO HANDLE THAT YET IM GONNA DIE");
+                            throw new HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException("oopsie i returned multiple columns teehee :3");
+                        }
 
-            } catch (HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException e) {
-                e.printStackTrace(System.err);
-                System.exit(-934782374);
+                    } catch (HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException e) {
+                        e.printStackTrace(System.err);
+                        System.exit(-934782374);
+                    }
+                    //dbm.closeConnection();
+                    break;
+                default:
+                    System.err.println("[Input] Unknown command: " + command);
+                    break;
             }
-            dbm.closeConnection();
+        } catch (HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException e) {
+            e.printStackTrace(System.err);
+            System.exit(-323138);
         }
     }
 

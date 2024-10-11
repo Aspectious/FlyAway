@@ -1,57 +1,72 @@
 package net.eastern.FlyAway.dbm;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
+import net.eastern.FlyAway.CLI.ShUtils;
+
+import javax.xml.transform.Result;
+import java.sql.*;
 
 public class Dbm {
     private Connection dbconn;
     public Dbm() {
-
-    }
-
-    public Connection getConnection() {
-        return this.dbconn;
-    }
-
-    public DbmResponse executeSQL(String sql) throws SQLException {
         String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
         String username = System.getenv("FLA_U");
         String pwd = System.getenv("FLA_P");
-        this.attemptConnection(url,username,pwd);
-        Statement stmt = this.dbconn.createStatement();
+        dbconn = this.attemptConnection(url,username,pwd);
+    }
+
+    public Connection getConnection() throws SQLException {
+        String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
+        String username = System.getenv("FLA_U");
+        String pwd = System.getenv("FLA_P");
+        Connection conn = DriverManager.getConnection(url, username, pwd);
+        return conn;
+    }
+
+    public DbmResponse executeSQL(Connection conn, String sql) throws SQLException {
+        Statement stmt = conn.createStatement();
         ResultSet rs = null;
         try {
             rs = stmt.executeQuery(sql);
-            System.out.println("Query executed");
+           ShUtils.Debugprintln("[DBM] Query Executed");
 
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            System.err.println("[DBM] Error: " + e);
         }
 
         int times = 0;
         String resparray = "";
         while (rs.next()) {
             times++;
-            resparray += rs.getString(1);
-            System.out.println(rs.getString(1));
+            String strresponse = "";
+
+            ResultSetMetaData metadata = rs.getMetaData();
+            metadata.getColumnCount();
+            for (int i=0; i<metadata.getColumnCount(); i++) {
+                strresponse += rs.getString(i+1) + ",";
+            }
+            strresponse.substring(0, strresponse.length()-1);
+            resparray += strresponse + ",";
         }
-        this.closeConnection();
-        System.out.println("times executed: " + times);
+        if (resparray.length() > 0) resparray.substring(0, resparray.length()-1);
+        String[] resparraylist = resparray.split(",");
         if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
-        if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparray);
-        else return new DbmResponse(DbmResponseType.ResponseList, times, new String[0]);
+        if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparraylist[0]);
+        return new DbmResponse(DbmResponseType.ResponseList, times, resparraylist);
     }
 
+    public void setConnection(Connection conn) {
+        this.dbconn = conn;
+    }
     public void closeConnection() {
+        /*
         try {
             System.out.println("Closing Connection");
-            dbconn.close();
+            //dbconn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+         */
     }
 
     /*
@@ -60,14 +75,13 @@ public class Dbm {
         Feel Free to use any other url or user/pass combo for dev
         TODO: NEVER PUT ANY RAW PASSWORDS IN AND COMMIT, IT IS MOSTLY IRREVERSIBLE
      */
-    public void attemptConnection(String url, String user, String pass) {
-        System.out.println("Attempting to connect to " + url);
-        System.out.println(System.getenv("FLYAWAY_DBM_PWD"));
+    public Connection attemptConnection(String url, String user, String pass) {
+        ShUtils.Debugprintln("[DBM] Attempting to connect to " + url);
         try (Connection connection = DriverManager.getConnection(url, user, pass)) {
-            System.out.println("Successfully connected to " + url);
-            this.dbconn = connection;
+            ShUtils.Debugprintln("[DBM] Successfully connected to " + url);
+            return connection;
         } catch (SQLException e) {
-            throw new IllegalStateException("Unable to connect to " + url, e);
+            throw new IllegalStateException("[DBM] Unable to connect to " + url, e);
         }
 
     }

@@ -7,7 +7,8 @@ public class DbmResponse {
     public DbmResponse(DbmResponseType type) {
         if (type != DbmResponseType.ResponseEmpty) throw new IllegalStateException("Invalid DbmResponse Type");
         this.responseType = type;
-        this.content = null;
+        this.content = new String[1];
+        this.content[0] = "null";
     }
     // For when DB has only one response
     public DbmResponse(DbmResponseType type, String content) {
