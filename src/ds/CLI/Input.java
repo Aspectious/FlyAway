@@ -3,20 +3,13 @@ package net.eastern.FlyAway.CLI;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.util.InputMismatchException;
-import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.*;
 
 import net.eastern.FlyAway.dbm.Dbm;
 import net.eastern.FlyAway.dbm.DbmResponse;
 import net.eastern.FlyAway.dbm.DbmResponseType;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 
 public class Input {
     private Dbm dbm;
@@ -74,9 +67,7 @@ public class Input {
     private void processCommand(String fullcommand) throws SQLException {
         String[] brokencmd = fullcommand.toLowerCase().split(" ");
         String[] args = new String[brokencmd.length - 1];
-        for (int i = 1; i < brokencmd.length; i++) {
-            args[i - 1] = brokencmd[i];
-        }
+        System.arraycopy(brokencmd, 1, args, 0, brokencmd.length - 1);
         String command = brokencmd[0];
         ShUtils.Debugprintln("[Input] Running command: " + fullcommand);
         try {

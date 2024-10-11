@@ -1,8 +1,8 @@
 package net.eastern.FlyAway.dbm;
 
 public class DbmResponse {
-    private DbmResponseType responseType;
-    private String[] content;
+    private final DbmResponseType responseType;
+    private final String[] content;
     // For when DB has no response
     public DbmResponse(DbmResponseType type) {
         if (type != DbmResponseType.ResponseEmpty) throw new IllegalStateException("Invalid DbmResponse Type");
@@ -22,9 +22,7 @@ public class DbmResponse {
         if (type != DbmResponseType.ResponseList) throw new IllegalStateException("Invalid DbmResponse Type");
         this.responseType = type;
         this.content = new String[responseLength];
-        for (int i=0; i<responseLength; i++) {
-            this.content[i] = columns[i];
-        }
+        System.arraycopy(columns, 0, this.content, 0, responseLength);
     }
 
     public DbmResponseType getType() {
