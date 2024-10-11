@@ -18,8 +18,7 @@ public class Dbm {
         String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
         String username = System.getenv("FLA_U");
         String pwd = System.getenv("FLA_P");
-        Connection conn = DriverManager.getConnection(url, username, pwd);
-        return conn;
+        return DriverManager.getConnection(url, username, pwd);
     }
 
     public DbmResponse executeSQL(Connection conn, String sql) throws SQLException {
@@ -34,21 +33,21 @@ public class Dbm {
         }
 
         int times = 0;
-        String resparray = "";
+        StringBuilder resparray = new StringBuilder();
         while (rs.next()) {
             times++;
-            String strresponse = "";
+            StringBuilder strresponse = new StringBuilder();
 
             ResultSetMetaData metadata = rs.getMetaData();
             metadata.getColumnCount();
             for (int i=0; i<metadata.getColumnCount(); i++) {
-                strresponse += rs.getString(i+1) + ",";
+                strresponse.append(rs.getString(i + 1)).append(",");
             }
             strresponse.substring(0, strresponse.length()-1);
-            resparray += strresponse + ",";
+            resparray.append(strresponse).append(",");
         }
-        if (resparray.length() > 0) resparray.substring(0, resparray.length()-1);
-        String[] resparraylist = resparray.split(",");
+        if (!resparray.isEmpty()) resparray.substring(0, resparray.length()-1);
+        String[] resparraylist = resparray.toString().split(",");
         if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
         if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparraylist[0]);
         return new DbmResponse(DbmResponseType.ResponseList, times, resparraylist);

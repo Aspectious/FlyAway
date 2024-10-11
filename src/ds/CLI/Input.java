@@ -1,4 +1,5 @@
 package net.eastern.FlyAway.CLI;
+
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.util.InputMismatchException;
@@ -9,15 +10,18 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.*;
+
 import net.eastern.FlyAway.dbm.Dbm;
 import net.eastern.FlyAway.dbm.DbmResponse;
 import net.eastern.FlyAway.dbm.DbmResponseType;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Input {
     private Dbm dbm;
-    public  Input() throws SQLException {
+
+    public Input() throws SQLException {
         System.out.println("[info] CLI Command Handler Started");
         doInputQueryCycle();
 
@@ -69,9 +73,9 @@ public class Input {
 
     private void processCommand(String fullcommand) throws SQLException {
         String[] brokencmd = fullcommand.toLowerCase().split(" ");
-        String[] args = new String[brokencmd.length-1];
-        for (int i=1; i< brokencmd.length; i++) {
-            args[i-1] = brokencmd[i];
+        String[] args = new String[brokencmd.length - 1];
+        for (int i = 1; i < brokencmd.length; i++) {
+            args[i - 1] = brokencmd[i];
         }
         String command = brokencmd[0];
         ShUtils.Debugprintln("[Input] Running command: " + fullcommand);
@@ -104,7 +108,28 @@ public class Input {
                             System.out.println(response2.getContentArray()[i]);
                         }
                     }
-                break;
+                    break;
+                case "setuserallow":
+                    int exitallow = Integer.parseInt(args[1]);
+                    System.out.println(String.join(" ", args));
+                    boolean isint2 = false;
+                    while (!isint2) {
+                        try {
+                            exitallow = Integer.parseInt(args[0]);
+                            isint2 = true;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Please enter a valid number");
+                        }
+                    }
+                    try {
+                        dbm = new Dbm();
+                        Connection conn = dbm.getConnection();
+                        DbmResponse updated = dbm.executeSQL(conn, "UPDATE users SET exitallowed = " + args[1] + " WHERE studentid = " + args[0]);
+                        System.out.println("User updated");
+                    } catch (SQLException e) {
+                        System.err.println("Error: " + e);
+                    }
+                    break;
                 case "validate":
                     int sid = 0;
                     boolean isint = false;
@@ -132,7 +157,7 @@ public class Input {
                             pstmt.setInt(1, sid);
                             pstmt.setBoolean(2, false);
                             pstmt.executeUpdate();
-                            DbmResponse nullresponse = dbm.executeSQL(conn,"SELECT studentid FROM users WHERE studentid = " + sid);
+                            DbmResponse nullresponse = dbm.executeSQL(conn, "SELECT studentid FROM users WHERE studentid = " + sid);
                             System.out.println("User added");
 
                         } else if (response.getType() == DbmResponseType.ResponseList) {
