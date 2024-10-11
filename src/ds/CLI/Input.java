@@ -11,8 +11,8 @@ import net.eastern.FlyAway.dbm.Dbm;
 public class Input {
     public  Input() throws SQLException {
         System.out.println("[input] Started");
-        String url = "jdbc:mysql://localhost:3306/flyawaydev";
-        String username = "josh";
+        String url = "jdbc:mysql://75.18.104.248:3306/flyawaydev";
+        String username = "aspectious";
         String password = "p@ssw0rd123";
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter ID: ");
@@ -41,7 +41,7 @@ public class Input {
         } catch (SQLException e) {
             System.out.println("Error: " + e);
         }
-
+        /*
         if(!rs.next()) {
             String sql = "INSERT INTO users (studentid, exitallowed) VALUES (?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -56,7 +56,13 @@ public class Input {
         if (rs == null) {
             System.out.println("No results found");
         }
-
+        */
+        int times = 0;
+        while (rs.next()) {
+            times++;
+            System.out.println(rs.getString(1));
+        }
+        System.out.println("times executed: " + times);
 
 
     }
