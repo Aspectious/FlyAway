@@ -2,7 +2,6 @@ package net.eastern.FlyAway.dbm;
 
 import net.eastern.FlyAway.CLI.ShUtils;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
 public class Dbm {
