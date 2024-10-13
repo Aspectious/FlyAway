@@ -6,7 +6,7 @@
         <element id="file-copy" path="$PROJECT_DIR$/build/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="FlyAway" />
-      <element id="dir-copy" path="$PROJECT_DIR$/res" />
+      <element id="library" level="project" name="mysql-connector-j" />
     </root>
   </artifact>
 </component>
