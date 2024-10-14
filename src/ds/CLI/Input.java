@@ -7,16 +7,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import net.eastern.FlyAway.dbm.Dbm;
 import net.eastern.FlyAway.dbm.DbmQueryType;
 import net.eastern.FlyAway.dbm.DbmResponse;
 import net.eastern.FlyAway.dbm.DbmResponseType;
 
 public class Input {
-    private Dbm dbm;
-    private LocalDateTime dt;
-    private boolean exitallowed, userexists;
 
     public Input() throws SQLException {
         System.out.println("[info] CLI Command Handler Started");
@@ -38,14 +34,15 @@ public class Input {
         ShUtils.Debugprintln("[Input] Running command: " + fullcommand);
         try {
             String earlyexit;
+            boolean userexists;
             switch (command) {
                 case "sendrecord":
-                    dbm = new Dbm();
-                    dt = LocalDateTime.now();
+                    Dbm dbm = new Dbm();
+                    LocalDateTime dt = LocalDateTime.now();
                     // For Testing
                     Connection conn = dbm.getConnection();
                     dbm.setConnection(conn);
-                    exitallowed = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT exitallowed FROM users WHERE studentid = " + args[0]).getContentArray()[0].equals("1");
+                    boolean exitallowed = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT exitallowed FROM users WHERE studentid = " + args[0]).getContentArray()[0].equals("1");
                     if (exitallowed) {
                         earlyexit = "APPROVED";
                     } else {
@@ -100,12 +97,22 @@ public class Input {
                     }
                     break;
                 case "setuserallow":
-                    int exitallow = Integer.parseInt(args[1]);
+                    dbm = new Dbm();
+                    conn = dbm.getConnection();
+                    DbmResponse userfound = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT studentid FROM users WHERE studentid = " + args[0]);
+                    if(userfound.getType() == DbmResponseType.ResponseEmpty) {
+                        System.out.println("User does not exist");
+                        System.out.println("Adding user to database");
+                        String sql = "INSERT INTO users (studentid, exitallowed) VALUES (?, ?)";
+                        PreparedStatement pstmt = conn.prepareStatement(sql);
+                        pstmt.setInt(1, Integer.parseInt(args[0]));
+                        pstmt.setBoolean(2, false);
+                        pstmt.executeUpdate();
+                    }
                     System.out.println(String.join(" ", args));
                     boolean isint2 = false;
                     while (!isint2) {
                         try {
-                            exitallow = Integer.parseInt(args[0]);
                             isint2 = true;
                         } catch (InputMismatchException e) {
                             System.out.println("Please enter a valid number");
