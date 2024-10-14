@@ -1,21 +1,75 @@
 package net.eastern.FlyAway.web;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
+import com.sun.net.httpserver.*;
+import net.eastern.FlyAway.CLI.ShUtils;
 
+import javax.net.ssl.*;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.security.KeyStore;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
+    private HttpsServer server;
+    private SSLContext sslContext;
+
     public Server(int portnum) throws Exception {
-        System.out.println("[Setup] Starting FlyAway Server.....");
-        HttpServer server = HttpServer.create(new InetSocketAddress(portnum),0);
+        try {
+            startHttpsServer(portnum);
+
+            ShUtils.Infoprintln("[web/Server] Done! Server up on port " + portnum);
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
+
+    }
+
+    public void startHttpsServer(int portnum) throws Exception {
+        InetSocketAddress addr = new InetSocketAddress(portnum);
+        ShUtils.Infoprintln("[web/Server] Starting up https Server on Port " + portnum);
+        server = HttpsServer.create(addr,0);
+        sslContext = SSLContext.getInstance("TLS");
+        ShUtils.Infoprintln("[web/Server] Importing TLS/SSL Keyring...");
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream is = classloader.getResourceAsStream("cert.p12");
+        KeyStore ks = KeyStore.getInstance("JKS");
+        ks.load(is,"".toCharArray());
+
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+        kmf.init(ks,"".toCharArray());
+
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+        tmf.init(ks);
+
+        ShUtils.Infoprintln("[web/Server] Configuring HTTPS Server...");
+        sslContext.init(kmf.getKeyManagers(),tmf.getTrustManagers(),null);
+        server.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
+            public void configure(HttpsParameters params) {
+                try {
+                    // Initialise the SSL context
+                    SSLContext c = getSSLContext();
+                    SSLEngine engine = c.createSSLEngine();
+                    params.setNeedClientAuth(false);
+                    params.setCipherSuites(engine.getEnabledCipherSuites());
+                    params.setProtocols(engine.getEnabledProtocols());
+
+                    // Get the default parameters
+                    SSLParameters defaultSSLParameters = c.getSupportedSSLParameters();
+                    params.setSSLParameters(defaultSSLParameters);
+                } catch (Exception ex) {
+                    ex.printStackTrace(System.err);
+                }
+            }
+        });
         server.createContext("/", new RootHandler());
         server.createContext("/query", new QueryHandler());
         server.setExecutor(null);
         server.start();
-        System.out.println("[Setup] FlyAway Server started.");
     }
+
 }

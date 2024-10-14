@@ -9,7 +9,6 @@ import java.io.OutputStream;
 public class QueryHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange t) throws IOException {
-
         String response = "501 NOT IMPLEMENTED";
         t.sendResponseHeaders(501, response.length());
         OutputStream os = t.getResponseBody();
