@@ -7,4 +7,6 @@ help				            | Shows you this help page
 validate {id num}	            | Validates a Certain ID number
 exec {sql}			            | [DEBUG] Execute SQL piped to a connection
 setuserallow {id num} {0 || 1}	| Set's a user's ability to validate successfully
+sendrecord {id num}	            | Sends a record to the server
+
 

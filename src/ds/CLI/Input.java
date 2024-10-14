@@ -2,6 +2,7 @@ package net.eastern.FlyAway.CLI;
 
 import java.io.InputStream;
 import java.sql.PreparedStatement;
+import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.sql.Connection;
@@ -14,48 +15,13 @@ import net.eastern.FlyAway.dbm.DbmResponseType;
 
 public class Input {
     private Dbm dbm;
+    private LocalDateTime dt;
+    private boolean exitallowed, userexists;
 
     public Input() throws SQLException {
         System.out.println("[info] CLI Command Handler Started");
         doInputQueryCycle();
-
-
-
-        /*
-
-        Statement stmt = conn.createStatement();
-        ResultSet rs = null;
-        try {
-            rs = stmt.executeQuery("SELECT exitallowed FROM users WHERE studentid = " + sid);
-            System.out.println("Query executed");
-
-        } catch (SQLException e) {
-            System.out.println("Error: " + e);
-        }
-        if(!rs.next()) {
-            String sql = "INSERT INTO users (studentid, exitallowed) VALUES (?, ?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, sid);
-            pstmt.setBoolean(2, false);
-            pstmt.executeUpdate();
-            rs = stmt.executeQuery("SELECT studentid FROM users WHERE studentid = " + sid);
-            System.out.println("User added");
-
-
-        }
-        if (rs == null) {
-            System.out.println("No results found");
-        }
-
-        int times = 0;
-        while (rs.next()) {
-            times++;
-            System.out.println(rs.getString(1));
-        }
-        System.out.println("times executed: " + times);
-        */
     }
-
 
     public void doInputQueryCycle() throws SQLException {
         Scanner scanner = new Scanner(System.in);
@@ -64,7 +30,6 @@ public class Input {
         doInputQueryCycle();
     }
 
-
     private void processCommand(String fullcommand) throws SQLException {
         String[] brokencmd = fullcommand.toLowerCase().split(" ");
         String[] args = new String[brokencmd.length - 1];
@@ -72,7 +37,40 @@ public class Input {
         String command = brokencmd[0];
         ShUtils.Debugprintln("[Input] Running command: " + fullcommand);
         try {
+            String earlyexit;
             switch (command) {
+                case "sendrecord":
+                    dbm = new Dbm();
+                    dt = LocalDateTime.now();
+                    // For Testing
+                    Connection conn = dbm.getConnection();
+                    dbm.setConnection(conn);
+                    exitallowed = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT exitallowed FROM users WHERE studentid = " + args[0]).getContentArray()[0].equals("1");
+                    if (exitallowed) {
+                        earlyexit = "APPROVED";
+                    } else {
+                        earlyexit = "REJECTED";
+                    }
+                    DbmResponse userexistsresponse = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT studentid FROM users WHERE studentid = " + args[0]);
+                    if (userexistsresponse.getType() == DbmResponseType.ResponseEmpty) {
+                        System.out.println("User does not exist");
+                        System.out.println("Adding user to database");
+                        String sql = "INSERT INTO users (studentid, exitallowed) VALUES (?, ?)";
+                        PreparedStatement pstmt = conn.prepareStatement(sql);
+                        pstmt.setInt(1, Integer.parseInt(args[0]));
+                        pstmt.setBoolean(2, false);
+                        pstmt.executeUpdate();
+                        userexists = true;
+                    } else if (userexistsresponse.getType() == DbmResponseType.ResponseList) {
+                        userexists = true;
+                    }
+
+                    DbmResponse response = dbm.executeSQL(conn, DbmQueryType.UPDATE, ("INSERT INTO RECORDS (sid, timestamp, result) VALUES (" + args[0] + ", '" + dt + "', '" + earlyexit + "')"));
+                    if (response.getType() == DbmResponseType.OneResponse) {
+                        System.out.println(response.getContentArray()[0]);
+                        break;
+                    }
+                    break;
                 case "exit":
                     System.exit(0);
                     break;
@@ -115,7 +113,7 @@ public class Input {
                     }
                     try {
                         dbm = new Dbm();
-                        Connection conn = dbm.getConnection();
+                        conn = dbm.getConnection();
                         DbmResponse updated = dbm.executeSQL(conn, DbmQueryType.UPDATE, "UPDATE users SET exitallowed = " + args[1] + " WHERE studentid = " + args[0]);
                         System.out.println("User updated");
                     } catch (SQLException e) {
@@ -136,9 +134,9 @@ public class Input {
                     try {
                         dbm = new Dbm();
                         // For Testing
-                        Connection conn = dbm.getConnection();
+                        conn = dbm.getConnection();
                         dbm.setConnection(conn);
-                        DbmResponse response = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT exitallowed FROM users WHERE studentid =" + sid);
+                        response = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT exitallowed FROM users WHERE studentid =" + sid);
                         ShUtils.Debugprintln("[Input] Response Type" + response.getType());
                         if (response.getType() == DbmResponseType.OneResponse) {
                             System.out.println(response.getContentArray()[0]);
