@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLConnection;
+import java.util.Collections;
 
 public class FileHandler implements HttpHandler {
     @Override
@@ -37,7 +38,7 @@ public class FileHandler implements HttpHandler {
             filetype = "text/plain";
             response = 500;
         }
-        t.setAttribute("Content-Type", filetype);
+        t.getResponseHeaders().set("Content-type", filetype + ";charset=UTF-8");
         t.sendResponseHeaders(response, data.length);
         OutputStream os = t.getResponseBody();
         os.write(data);

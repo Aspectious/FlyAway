@@ -10,15 +10,13 @@ public class Util {
     public static Map<String, String> getFileMap() throws IOException {
 
         Map<String,String> map = new HashMap<String,String>();
-        map.put("/","/wwwroot/html/index.html");
+        //map.put("/","/wwwroot/html/index.html");
         InputStream is = Util.class.getResourceAsStream("/pathmap.csv");
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;
         while (br.ready()){
             line = br.readLine();
             String[] arr = line.split(",");
-            System.out.println(arr[0]);
-            System.out.println(arr[1]);
             map.put(arr[0],arr[1]);
 
         }

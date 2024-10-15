@@ -63,7 +63,7 @@ public class Server {
             }
         });
         server.createContext("/", new FileHandler());
-        server.createContext("/query", new QueryHandler());
+        server.createContext("/validate", new ValidationHandler());
         server.setExecutor(null);
         server.start();
     }
