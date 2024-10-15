@@ -6,11 +6,12 @@ import java.sql.*;
 
 public class Dbm {
     private Connection dbconn;
+
     public Dbm() {
         String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
         String username = System.getenv("FLA_U");
         String pwd = System.getenv("FLA_P");
-        dbconn = this.attemptConnection(url,username,pwd);
+        dbconn = this.attemptConnection(url, username, pwd);
     }
 
     public Connection getConnection() throws SQLException {
@@ -41,13 +42,13 @@ public class Dbm {
 
                 ResultSetMetaData metadata = rs.getMetaData();
                 metadata.getColumnCount();
-                for (int i=0; i<metadata.getColumnCount(); i++) {
+                for (int i = 0; i < metadata.getColumnCount(); i++) {
                     strresponse.append(rs.getString(i + 1)).append(",");
                 }
-                strresponse.substring(0, strresponse.length()-1);
+                strresponse.substring(0, strresponse.length() - 1);
                 resparray.append(strresponse).append(",");
             }
-            if (!resparray.isEmpty()) resparray.substring(0, resparray.length()-1);
+            if (!resparray.isEmpty()) resparray.substring(0, resparray.length() - 1);
             String[] resparraylist = resparray.toString().split(",");
             if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
             if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparraylist[0]);
@@ -62,6 +63,7 @@ public class Dbm {
     public void setConnection(Connection conn) {
         this.dbconn = conn;
     }
+
     public void closeConnection() {
         /*
         try {

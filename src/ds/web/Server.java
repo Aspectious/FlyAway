@@ -1,18 +1,14 @@
 package net.eastern.FlyAway.web;
 
-import com.sun.net.httpserver.*;
+import com.sun.net.httpserver.HttpsConfigurator;
+import com.sun.net.httpserver.HttpsParameters;
+import com.sun.net.httpserver.HttpsServer;
 import net.eastern.FlyAway.CLI.ShUtils;
 
 import javax.net.ssl.*;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.security.KeyStore;
-import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Server {
     private HttpsServer server;
@@ -32,22 +28,22 @@ public class Server {
     public void startHttpsServer(int portnum) throws Exception {
         InetSocketAddress addr = new InetSocketAddress(portnum);
         ShUtils.Infoprintln("[web/Server] Starting up https Server on Port " + portnum);
-        server = HttpsServer.create(addr,0);
+        server = HttpsServer.create(addr, 0);
         sslContext = SSLContext.getInstance("TLS");
         ShUtils.Infoprintln("[web/Server] Importing TLS/SSL Keyring...");
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream is = classloader.getResourceAsStream("cert.p12");
         KeyStore ks = KeyStore.getInstance("JKS");
-        ks.load(is,"".toCharArray());
+        ks.load(is, "".toCharArray());
 
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-        kmf.init(ks,"".toCharArray());
+        kmf.init(ks, "".toCharArray());
 
         TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
         tmf.init(ks);
 
         ShUtils.Infoprintln("[web/Server] Configuring HTTPS Server...");
-        sslContext.init(kmf.getKeyManagers(),tmf.getTrustManagers(),null);
+        sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
         server.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
             public void configure(HttpsParameters params) {
                 try {
