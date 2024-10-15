@@ -32,8 +32,8 @@ public class Server {
         sslContext = SSLContext.getInstance("TLS");
         ShUtils.Infoprintln("[web/Server] Importing TLS/SSL Keyring...");
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classloader.getResourceAsStream("cert.p12");
-        KeyStore ks = KeyStore.getInstance("JKS");
+        InputStream is = classloader.getResourceAsStream("crt/cert.p12");
+        KeyStore ks = KeyStore.getInstance("PKCS12");
         ks.load(is, "".toCharArray());
 
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
@@ -62,7 +62,7 @@ public class Server {
                 }
             }
         });
-        server.createContext("/", new RootHandler());
+        server.createContext("/", new FileHandler());
         server.createContext("/query", new QueryHandler());
         server.setExecutor(null);
         server.start();
