@@ -2,13 +2,15 @@ package net.eastern.FlyAway.web;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import net.eastern.FlyAway.Util;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLConnection;
 
-public class RootHandler implements HttpHandler {
+public class FileHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange t) throws IOException {
 
@@ -17,16 +19,23 @@ public class RootHandler implements HttpHandler {
         int response;
         byte[] data;
         String filetype;
+
         try {
-            InputStream filestr = getClass().getResourceAsStream("/wwwroot/html/index.html");
+            String path = Util.getResPathFromURL(t.getRequestURI() + "");
+            InputStream filestr = getClass().getResourceAsStream(path);
             filetype = URLConnection.guessContentTypeFromStream(filestr);
             data = filestr.readAllBytes();
             response = 200;
-        }  catch (Exception e) {
-            e.printStackTrace(System.err);
-            data = new byte[0];
+        } catch (FileNotFoundException e) {
+            data = "404 Not Found".getBytes();
             filetype = "text/plain";
             response = 404;
+        }
+        catch (Exception e) {
+            e.printStackTrace(System.err);
+            data = "500 INTERNAL SERVER ERROR".getBytes();
+            filetype = "text/plain";
+            response = 500;
         }
         t.setAttribute("Content-Type", filetype);
         t.sendResponseHeaders(response, data.length);
