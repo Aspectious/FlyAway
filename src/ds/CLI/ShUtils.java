@@ -15,15 +15,18 @@ public class ShUtils {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static final String ANSI_GRAY = "\u001B[90m";
+
     private static final String getNow() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formNow = "[" + now.format(formatter) + "] ";
         return formNow;
     }
+
     public static final void Debugprintln(String message) {
         System.out.println(ANSI_GRAY + getNow() + "[Debug] " + message + ANSI_RESET);
     }
+
     public static final void Infoprintln(String message) {
         System.out.println(ANSI_RESET + getNow() + "[Info] " + message + ANSI_RESET);
     }

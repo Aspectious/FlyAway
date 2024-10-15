@@ -14,7 +14,7 @@ public class RootHandler implements HttpHandler {
         System.out.println("[Info] New Request, origin \"" + t.getRemoteAddress().getAddress() + ":" + t.getRemoteAddress().getPort() + "\", target \"" + t.getRequestURI() + "\"");
 
         String response = "200 OK";
-        t.sendResponseHeaders(200,response.length());
+        t.sendResponseHeaders(200, response.length());
         OutputStream os = t.getResponseBody();
         os.write(response.getBytes());
         os.close();

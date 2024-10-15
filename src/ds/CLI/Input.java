@@ -1,16 +1,17 @@
 package net.eastern.FlyAway.CLI;
 
-import java.io.InputStream;
-import java.sql.PreparedStatement;
-import java.time.LocalDateTime;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.sql.Connection;
-import java.sql.SQLException;
 import net.eastern.FlyAway.dbm.Dbm;
 import net.eastern.FlyAway.dbm.DbmQueryType;
 import net.eastern.FlyAway.dbm.DbmResponse;
 import net.eastern.FlyAway.dbm.DbmResponseType;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Input {
 
@@ -100,7 +101,7 @@ public class Input {
                     dbm = new Dbm();
                     conn = dbm.getConnection();
                     DbmResponse userfound = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT studentid FROM users WHERE studentid = " + args[0]);
-                    if(userfound.getType() == DbmResponseType.ResponseEmpty) {
+                    if (userfound.getType() == DbmResponseType.ResponseEmpty) {
                         System.out.println("User does not exist");
                         System.out.println("Adding user to database");
                         String sql = "INSERT INTO users (studentid, exitallowed) VALUES (?, ?)";
