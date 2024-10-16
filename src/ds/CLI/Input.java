@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 public class Input {
 
+
     public Input() throws SQLException {
         System.out.println("[info] CLI Command Handler Started");
         doInputQueryCycle();
@@ -35,8 +36,9 @@ public class Input {
         ShUtils.Debugprintln("[Input] Running command: " + fullcommand);
         try {
             String earlyexit;
-            boolean userexists;
             switch (command) {
+                case "":
+                    break;
                 case "sendrecord":
                     Dbm dbm = new Dbm();
                     LocalDateTime dt = LocalDateTime.now();
@@ -58,9 +60,7 @@ public class Input {
                         pstmt.setInt(1, Integer.parseInt(args[0]));
                         pstmt.setBoolean(2, false);
                         pstmt.executeUpdate();
-                        userexists = true;
                     } else if (userexistsresponse.getType() == DbmResponseType.ResponseList) {
-                        userexists = true;
                     }
 
                     DbmResponse response = dbm.executeSQL(conn, DbmQueryType.UPDATE, ("INSERT INTO RECORDS (sid, timestamp, result) VALUES (" + args[0] + ", '" + dt + "', '" + earlyexit + "')"));
@@ -182,5 +182,4 @@ public class Input {
             System.exit(-323138);
         }
     }
-
 }
