@@ -1,1 +1,4 @@
 .idea/discord.xml
+ep/bin/.cmake
+ep/bin/CMakeFiles
+ep/bin/Testing
