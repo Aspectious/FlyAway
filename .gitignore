@@ -2,3 +2,4 @@
 ep/bin/.cmake
 ep/bin/CMakeFiles
 ep/bin/Testing
+ep/cmake-build-*
