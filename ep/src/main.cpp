@@ -1,6 +1,8 @@
+#include <cpr/cpr.h>
 #include <iostream>
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    auto response = cpr::Get(cpr::Url{"https://api.github.com/repos/whoshuu/cpr/contributors"});
+    std::cout << response.text << std::endl;
     return 0;
 }

@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/home/scushi/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/home/scushi/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/home/scushi/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/home/scushi/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/home/scushi/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/home/scushi/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/scushi/CLionProjects/FlyAway/ep/cmake-build-release/CMakeFiles /home/scushi/CLionProjects/FlyAway/ep/cmake-build-release//CMakeFiles/progress.marks
@@ -129,6 +174,110 @@ ep/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ep.dir/build.make CMakeFiles/ep.dir/build
 .PHONY : ep/fast
 
+#=============================================================================
+# Target rules for targets named zlib
+
+# Build rule for target.
+zlib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 zlib
+.PHONY : zlib
+
+# fast build rule for target.
+zlib/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/zlib-build/CMakeFiles/zlib.dir/build.make _deps/zlib-build/CMakeFiles/zlib.dir/build
+.PHONY : zlib/fast
+
+#=============================================================================
+# Target rules for targets named curl_uninstall
+
+# Build rule for target.
+curl_uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 curl_uninstall
+.PHONY : curl_uninstall
+
+# fast build rule for target.
+curl_uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/curl-build/CMakeFiles/curl_uninstall.dir/build.make _deps/curl-build/CMakeFiles/curl_uninstall.dir/build
+.PHONY : curl_uninstall/fast
+
+#=============================================================================
+# Target rules for targets named curl-generate-curl-config.1
+
+# Build rule for target.
+curl-generate-curl-config.1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 curl-generate-curl-config.1
+.PHONY : curl-generate-curl-config.1
+
+# fast build rule for target.
+curl-generate-curl-config.1/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/curl-build/docs/CMakeFiles/curl-generate-curl-config.1.dir/build.make _deps/curl-build/docs/CMakeFiles/curl-generate-curl-config.1.dir/build
+.PHONY : curl-generate-curl-config.1/fast
+
+#=============================================================================
+# Target rules for targets named curl-generate-mk-ca-bundle.1
+
+# Build rule for target.
+curl-generate-mk-ca-bundle.1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 curl-generate-mk-ca-bundle.1
+.PHONY : curl-generate-mk-ca-bundle.1
+
+# fast build rule for target.
+curl-generate-mk-ca-bundle.1/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/curl-build/docs/CMakeFiles/curl-generate-mk-ca-bundle.1.dir/build.make _deps/curl-build/docs/CMakeFiles/curl-generate-mk-ca-bundle.1.dir/build
+.PHONY : curl-generate-mk-ca-bundle.1/fast
+
+#=============================================================================
+# Target rules for targets named curl-man
+
+# Build rule for target.
+curl-man: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 curl-man
+.PHONY : curl-man
+
+# fast build rule for target.
+curl-man/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/curl-build/docs/libcurl/CMakeFiles/curl-man.dir/build.make _deps/curl-build/docs/libcurl/CMakeFiles/curl-man.dir/build
+.PHONY : curl-man/fast
+
+#=============================================================================
+# Target rules for targets named curl-opts-man
+
+# Build rule for target.
+curl-opts-man: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 curl-opts-man
+.PHONY : curl-opts-man
+
+# fast build rule for target.
+curl-opts-man/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/curl-build/docs/libcurl/opts/CMakeFiles/curl-opts-man.dir/build.make _deps/curl-build/docs/libcurl/opts/CMakeFiles/curl-opts-man.dir/build
+.PHONY : curl-opts-man/fast
+
+#=============================================================================
+# Target rules for targets named libcurl_shared
+
+# Build rule for target.
+libcurl_shared: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libcurl_shared
+.PHONY : libcurl_shared
+
+# fast build rule for target.
+libcurl_shared/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/curl-build/lib/CMakeFiles/libcurl_shared.dir/build.make _deps/curl-build/lib/CMakeFiles/libcurl_shared.dir/build
+.PHONY : libcurl_shared/fast
+
+#=============================================================================
+# Target rules for targets named cpr
+
+# Build rule for target.
+cpr: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cpr
+.PHONY : cpr
+
+# fast build rule for target.
+cpr/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/cpr-build/cpr/CMakeFiles/cpr.dir/build.make _deps/cpr-build/cpr/CMakeFiles/cpr.dir/build
+.PHONY : cpr/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -160,8 +309,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... curl-generate-curl-config.1"
+	@echo "... curl-generate-mk-ca-bundle.1"
+	@echo "... curl-man"
+	@echo "... curl-opts-man"
+	@echo "... curl_uninstall"
+	@echo "... cpr"
 	@echo "... ep"
+	@echo "... libcurl_shared"
+	@echo "... zlib"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

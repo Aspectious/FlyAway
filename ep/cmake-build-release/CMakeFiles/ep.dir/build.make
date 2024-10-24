@@ -92,6 +92,8 @@ ep_EXTERNAL_OBJECTS =
 
 ep: CMakeFiles/ep.dir/src/main.cpp.o
 ep: CMakeFiles/ep.dir/build.make
+ep: _deps/cpr-build/cpr/libcpr.so.1.11.0
+ep: _deps/curl-build/lib/libcurl.so.4.8.0
 ep: CMakeFiles/ep.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/scushi/CLionProjects/FlyAway/ep/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ep"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ep.dir/link.txt --verbose=$(VERBOSE)

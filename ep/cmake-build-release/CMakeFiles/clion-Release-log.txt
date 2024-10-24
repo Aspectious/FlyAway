@@ -1,4 +1,4 @@
-/home/scushi/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S /home/scushi/CLionProjects/FlyAway/ep -B /home/scushi/CLionProjects/FlyAway/ep/cmake-build-release
+/home/scushi/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/home/scushi/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Unix Makefiles" -S /home/scushi/CLionProjects/FlyAway/ep -B /home/scushi/CLionProjects/FlyAway/ep/cmake-build-release
 -- The C compiler identification is GNU 14.2.0
 -- The CXX compiler identification is GNU 14.2.0
 -- Detecting C compiler ABI info
@@ -11,6 +11,6 @@
 -- Check for working CXX compiler: /usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Configuring done (0.8s)
+-- Configuring done (0.3s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/scushi/CLionProjects/FlyAway/ep/cmake-build-release
