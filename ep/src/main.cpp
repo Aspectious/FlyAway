@@ -1,9 +1,20 @@
 #include <cpr/cpr.h>
 #include <iostream>
 
-int main() {
-    cpr::SslOptions sslOpts = cpr::Ssl(cpr::ssl::VerifyHost{false}, cpr::ssl::VerifyPeer{false},cpr::ssl::VerifyStatus{false});
-    auto response = cpr::Get(cpr::Url{"https://localhost:8000/validate?id=845435"}, sslOpts);
-    std::cout << response.text << std::endl;
+int main()
+{
+    while(true){
+        int id;
+        std::cout << "Enter id: ";
+        std::cin >> id;
+        if (id == -1){
+            break;
+        }
+
+        cpr::SslOptions sslOpts = cpr::Ssl(cpr::ssl::VerifyHost{false}, cpr::ssl::VerifyPeer{false},cpr::ssl::VerifyStatus{false});
+        auto response = cpr::Get(cpr::Url{"https://192.168.1.193:8000/validate?id=" + std::to_string(id)}, sslOpts);
+        std::cout << response.text << std::endl;
+
+    }
     return 0;
 }
