@@ -1,0 +1,19 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run (as aspectious)" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="17" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="FLA_IP" value="75.18.104.248" />
+      <env name="FLA_U" value="aspectious" />
+      <env name="FLA_P" value="p@ssw0rd123" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="net.eastern.FlyAway.Main" />
+    <module name="FlyAway" />
+    <projectPathOnTarget name="projectPathOnTarget" value="/home/aspectious/FlyAway" />
+    <target name="@@@LOCAL@@@" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
