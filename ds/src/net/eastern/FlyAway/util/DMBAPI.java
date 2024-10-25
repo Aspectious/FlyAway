@@ -12,7 +12,10 @@ import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 
 public class DMBAPI {
-    public void processCommand(String fullcommand) throws SQLException {
+    public int processCommand(String fullcommand) throws SQLException {
+
+        int result;
+
         String[] brokencmd = fullcommand.toLowerCase().split(" ");
         String[] args = new String[brokencmd.length - 1];
         System.arraycopy(brokencmd, 1, args, 0, brokencmd.length - 1);
@@ -22,6 +25,7 @@ public class DMBAPI {
             String earlyexit;
             switch (command) {
                 case "":
+                    result = 500;
                     break;
                 case "sendrecord":
                     Dbm dbm = new Dbm();
@@ -32,8 +36,10 @@ public class DMBAPI {
                     boolean exitallowed = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT exitallowed FROM users WHERE studentid = " + args[0]).getContentArray()[0].equals("1");
                     if (exitallowed) {
                         earlyexit = "APPROVED";
+                        result = 200;
                     } else {
                         earlyexit = "REJECTED";
+                        result = 403;
                     }
                     DbmResponse userexistsresponse = dbm.executeSQL(conn, DbmQueryType.QUERY, "SELECT studentid FROM users WHERE studentid = " + args[0]);
                     if (userexistsresponse.getType() == DbmResponseType.ResponseEmpty) {
@@ -83,14 +89,19 @@ public class DMBAPI {
                     } catch (SQLException e) {
                         System.err.println("Error: " + e);
                     }
+                    result = 500;
                     break;
                 default:
+                    result = 500;
                     System.err.println("[Input] Unknown command: " + command);
                     break;
             }
+
+            return result;
         } catch (Exception e) {
             e.printStackTrace(System.err);
             System.exit(-323138);
+            return 500;
         }
     }
 }

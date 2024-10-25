@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="44959bd4-935c-40f2-9685-4b391d36faaa" name="Changes" comment="" />
+    <list default="true" id="44959bd4-935c-40f2-9685-4b391d36faaa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frmwrk/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frmwrk/.idea/frmwrk.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frmwrk/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frmwrk/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ds/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds/bin/artifacts/FlyAway.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ds/bin/artifacts/FlyAway.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds/bin/dev/FlyAway/net/eastern/FlyAway/util/DMBAPI.class" beforeDir="false" afterPath="$PROJECT_DIR$/ds/bin/dev/FlyAway/net/eastern/FlyAway/util/DMBAPI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds/bin/dev/FlyAway/net/eastern/FlyAway/web/ValidationHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ds/bin/dev/FlyAway/net/eastern/FlyAway/web/ValidationHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds/src/net/eastern/FlyAway/util/DMBAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/ds/src/net/eastern/FlyAway/util/DMBAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds/src/net/eastern/FlyAway/web/ValidationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ds/src/net/eastern/FlyAway/web/ValidationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ep/cmake-build-release/CMakeFiles/ep.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/ep/cmake-build-release/CMakeFiles/ep.dir/src/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ep/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/ep/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ep/cmake-build-release/ep" beforeDir="false" afterPath="$PROJECT_DIR$/ep/cmake-build-release/ep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ep/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ep/src/main.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,21 +38,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "SushiBirb"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SushiBirb&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Aspectious/FlyAway.git",
-    "accountId": "4ebe5a9e-7b2d-4ad6-9d0c-700ecbb4af8d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Aspectious/FlyAway.git&quot;,
+    &quot;accountId&quot;: &quot;4ebe5a9e-7b2d-4ad6-9d0c-700ecbb4af8d&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2nqivOlH9FqQlK6dRkA6Arpp5l8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -47,7 +67,10 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "dev",
-    "last_opened_file_path": "/home/scushi/CLionProjects/FlyAway/ep",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/aspectious/dev/flyaway",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
