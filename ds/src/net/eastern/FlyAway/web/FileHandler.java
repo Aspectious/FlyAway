@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.net.URLConnection;
 
 public class FileHandler implements HttpHandler {
@@ -21,9 +22,10 @@ public class FileHandler implements HttpHandler {
         String filetype;
 
         try {
-            String path = Utils.getResPathFromURL(t.getRequestURI() + "");
+            URI url = t.getRequestURI();
+            String path = Utils.getResPathFromURL(url + "");
             InputStream filestr = getClass().getResourceAsStream(path);
-            filetype = URLConnection.guessContentTypeFromStream(filestr);
+            filetype = Utils.getmimeTypeFromURL(String.valueOf(url));
             data = filestr.readAllBytes();
             response = 200;
         } catch (FileNotFoundException e) {

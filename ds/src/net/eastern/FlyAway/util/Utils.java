@@ -39,22 +39,45 @@ public class Utils {
     public static final void Errprintln(String message) {
         System.err.println(ANSI_YELLOW + getNow() + "[Warn] [" +  StackWalker.getInstance().walk(stream -> stream.skip(1).findFirst().get()).getClassName() + "] " + message + ANSI_RESET);
     }
-    public static Map<String,String> map;
 
-    public static Map<String, String> getFileMap() throws IOException {
 
-        Map<String,String> map = new HashMap<String,String>();
-        //map.put("/","/wwwroot/html/index.html");
+    /*
+        Methods for loading the res/pathmap.csv file to tell server what type of file is where
+     */
+    public static Map<String, String[]> map;
+
+    public static Map<String, String[]> getFileMap() throws IOException {
+
+        Map<String, String[]> map = new HashMap<String,String[]>();
+
         InputStream is = Utils.class.getResourceAsStream("/pathmap.csv");
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;
         while (br.ready()){
             line = br.readLine();
             String[] arr = line.split(",");
-            map.put(arr[0],arr[1]);
+
+            for (String item : arr) {
+                System.out.println(item);
+            }
+            map.put(arr[1],new String[]{arr[2],arr[0]});
 
         }
         return map;
+    }
+
+    public static String getMimeType(String filetype) {
+        Map<String,String> lookupDictionary = new HashMap<String,String>();
+        lookupDictionary.put("jpeg","image/jpeg");
+        lookupDictionary.put("jpg","image/jpeg");
+        lookupDictionary.put("ico","image/vnd.microsoft.icon");
+        lookupDictionary.put("","text/plain");
+        lookupDictionary.put("txt","text/plain");
+        lookupDictionary.put("html","text/html");
+        lookupDictionary.put("htm","text/html");
+        lookupDictionary.put("js","text/javascript");
+        lookupDictionary.put("css","text/css");
+        return lookupDictionary.get(filetype);
     }
     public static void loadMap() {
         try {
@@ -63,7 +86,7 @@ public class Utils {
             e.printStackTrace(System.err);
         }
     }
-    public static String getResPathFromURL(String url) throws FileNotFoundException {
+    private static void checkIfFileExists(String url) throws FileNotFoundException {
         if (map.get(url) == null) {
             throw new FileNotFoundException("File not found");
         }
@@ -72,6 +95,17 @@ public class Utils {
         } catch (NullPointerException e) {
             throw new FileNotFoundException("File not found");
         }
-        return map.get(url);
+    }
+    public static String getmimeTypeFromURL(String url) throws FileNotFoundException {
+        checkIfFileExists(url);
+        String item = map.get(url)[1];
+        System.out.println(url);
+        System.out.println(item);
+        return getMimeType(item);
+    }
+
+    public static String getResPathFromURL(String url) throws FileNotFoundException {
+        checkIfFileExists(url);
+        return (String) map.get(url)[0];
     }
 }

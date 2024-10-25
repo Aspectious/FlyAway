@@ -1,94 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="44959bd4-935c-40f2-9685-4b391d36faaa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frmwrk/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frmwrk/.idea/frmwrk.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frmwrk/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frmwrk/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ds/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds/bin/artifacts/FlyAway.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ds/bin/artifacts/FlyAway.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds/bin/dev/FlyAway/net/eastern/FlyAway/util/DMBAPI.class" beforeDir="false" afterPath="$PROJECT_DIR$/ds/bin/dev/FlyAway/net/eastern/FlyAway/util/DMBAPI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds/bin/dev/FlyAway/net/eastern/FlyAway/web/ValidationHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ds/bin/dev/FlyAway/net/eastern/FlyAway/web/ValidationHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds/src/net/eastern/FlyAway/util/DMBAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/ds/src/net/eastern/FlyAway/util/DMBAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds/src/net/eastern/FlyAway/web/ValidationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ds/src/net/eastern/FlyAway/web/ValidationHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ep/cmake-build-release/CMakeFiles/ep.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/ep/cmake-build-release/CMakeFiles/ep.dir/src/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ep/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/ep/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ep/cmake-build-release/ep" beforeDir="false" afterPath="$PROJECT_DIR$/ep/cmake-build-release/ep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ep/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ep/src/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="19e97272-6425-467b-8341-5ce7b4973659" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ClangdSettings">
-    <option name="formatViaClangd" value="false" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;SushiBirb&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Aspectious/FlyAway.git&quot;,
-    &quot;accountId&quot;: &quot;4ebe5a9e-7b2d-4ad6-9d0c-700ecbb4af8d&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="2nqivOlH9FqQlK6dRkA6Arpp5l8" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2nvqXPcQWo99oumgTpCkEaizplL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "dev",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/aspectious/dev/flyaway",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
+    "last_opened_file_path": "C:/Users/griff/dev/FlyAway/ds/res/wwwroot",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="44959bd4-935c-40f2-9685-4b391d36faaa" name="Changes" comment="" />
-      <created>1729707237955</created>
+      <changelist id="19e97272-6425-467b-8341-5ce7b4973659" name="Changes" comment="" />
+      <created>1729863944386</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1729707237955</updated>
-      <workItem from="1729707239717" duration="120000" />
+      <updated>1729863944386</updated>
+      <workItem from="1729863946318" duration="119000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
