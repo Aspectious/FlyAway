@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="FlyAwayDev@75.18.104.248" uuid="1bd09748-9417-4b6c-8732-400241ba83a1">
+    <data-source source="LOCAL" name="josh data source" uuid="1bd09748-9417-4b6c-8732-400241ba83a1">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
@@ -14,7 +14,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Altitude Remote Conn" uuid="376bcd65-9f6b-4117-baa3-22e4d4ddf50c">
+    <data-source source="LOCAL" name="aspectious data source" uuid="376bcd65-9f6b-4117-baa3-22e4d4ddf50c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

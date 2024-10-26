@@ -3,3 +3,4 @@ ep/bin/.cmake
 ep/bin/CMakeFiles
 ep/bin/Testing
 ep/cmake-build-*
+frmwk/node_modules

@@ -5,3 +5,4 @@ js,/lib/babel.min.js,/wwwroot/lib/babel.min.js
 js,/lib/react.js,/wwwroot/lib/react.development.js
 js,/lib/react-dom.js,/wwwroot/lib/react-dom.development.js
 js,/js/components/test.js,/wwwroot/js/components/test.js
+,/favicon.ico,/wwwroot/img/flyaway-logo-filled.ico
