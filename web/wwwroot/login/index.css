@@ -1,0 +1,32 @@
+html,body {
+    margin: 0;
+    height: 100%;
+}
+#root {
+      background-image: url("/img/flyaway-bg.png");
+    display: flex;
+    flex-flow:column;
+    height: 100%;
+
+}
+.login-modal {
+    flex: 1 1 auto;
+
+}
+.login-modal-content {
+    background-color: #e3e3ea;
+    padding: 30px;
+    margin-top:10%;
+    border-radius: 10px;
+    margin-left:40%;
+    margin-right:40%;
+}
+
+.footer {
+    font-family: sans-serif;
+    opacity:70%;
+    padding:20px;
+    background-color: #535a65;
+    color: #dcd8d8;
+    text-align:center;
+}
