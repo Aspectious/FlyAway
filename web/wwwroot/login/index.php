@@ -3,15 +3,17 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="icon" href="/img/flyaway-logo-filled.ico" type="image/x-icon"/>
-        <link rel="stylesheet" href="./index.css"/>
+        <link rel="stylesheet" href="/login/index.css"/>
+
         <title><?php include('../components/titlemode')?> - Login</title>
     </head>
 <body>
+<?php include("../loader.php")?>
 <div id="root">
     <div class="login-modal">
         <div class="login-modal-content">
             <div class="login-modal-content-header">
-                <img class="login-modal-icon" src="img/flyaway-logo.png" alt="flyaway logo"></img>
+                <img class="login-modal-icon" src="/login/img/flyaway-logo.png" alt="flyaway logo"></img>
                 <div class="login-modal-title">Sign In</div>
             </div>
             <div class="login-modal-cred-panel">
