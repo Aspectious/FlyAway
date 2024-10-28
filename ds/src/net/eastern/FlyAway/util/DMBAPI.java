@@ -53,7 +53,7 @@ public class DMBAPI {
                     } else if (userexistsresponse.getType() == DbmResponseType.ResponseList) {
                     }
 
-                    DbmResponse response = dbm.executeSQL(conn, DbmQueryType.UPDATE, ("INSERT INTO RECORDS (sid, timestamp, result) VALUES (" + args[0] + ", '" + dt + "', '" + earlyexit + "')"));
+                    DbmResponse response = dbm.executeSQL(conn, DbmQueryType.UPDATE, ("INSERT INTO records(sid, timestamp, result) VALUES (" + args[0] + ", '" + dt + "', '" + earlyexit + "')"));
                     if (response.getType() == DbmResponseType.OneResponse) {
                         System.out.println(response.getContentArray()[0]);
                         break;

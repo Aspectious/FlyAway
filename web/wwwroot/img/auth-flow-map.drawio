@@ -1,0 +1,184 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0" version="24.8.3">
+  <diagram name="Page-1" id="g7Gxk3jRpI20daP7obQn">
+    <mxGraphModel dx="1687" dy="911" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-46" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="50" width="110" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-45" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="460" y="50" width="160" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-28" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="300" y="50" width="160" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-29" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="620" y="50" width="180" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-27" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="30" y="50" width="160" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-1" target="y-nD3eVg9ZiISeScWmFu-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-4" value="Request New Session" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-3">
+          <mxGeometry x="0.0144" y="1" relative="1" as="geometry">
+            <mxPoint y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-1" value="New Session" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-6" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-2" target="y-nD3eVg9ZiISeScWmFu-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-7" value="Wowza new Session GUID" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-6">
+          <mxGeometry x="-0.0455" y="-1" relative="1" as="geometry">
+            <mxPoint x="-7" y="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-2" value="Cool, New Session Created and GUID stored in DB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="190" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-5" target="y-nD3eVg9ZiISeScWmFu-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-11" value="Redirect to Login" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-9">
+          <mxGeometry x="-0.121" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-5" value="New Session, who dis?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-8" target="y-nD3eVg9ZiISeScWmFu-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-14" value="login details sent&lt;br&gt;and encryped!" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-13">
+          <mxGeometry x="-0.0014" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-8" value="haha i am john winman" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-16" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-12" target="y-nD3eVg9ZiISeScWmFu-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-17" value="Forwarded!" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-16">
+          <mxGeometry x="-0.0148" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-12" value="i dont believe you imma check rq" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-22" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-15" target="y-nD3eVg9ZiISeScWmFu-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-23" value="ReEncryped Response" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-22">
+          <mxGeometry x="-0.012" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-15" value="we decrypted and checked his credentials hash against the db, he&#39;s john winman" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="400" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-19" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-18" target="y-nD3eVg9ZiISeScWmFu-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-20" value="https request!" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-19">
+          <mxGeometry x="-0.0638" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-18" value="hahaha i goto da website for the first time since ive open my broswer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-21" target="y-nD3eVg9ZiISeScWmFu-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-26" value="Redirect to Dashboard!" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-25">
+          <mxGeometry x="-0.0791" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-21" value="Holy Moly welcome back john winman" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-24" value="cool thanks ty" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-30" value="Client Action" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="80" y="70" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-33" value="Backend database and API" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="650" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-34" value="PHP Server" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="340" y="80" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-37" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="300" y="540" width="160" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-38" value="Endpoint" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="330" y="560" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-42" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-39" target="y-nD3eVg9ZiISeScWmFu-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-44" value="Oh no it&#39;s &lt;br&gt;MiischeviousMan443&lt;br&gt;with id num 84783" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-42">
+          <mxGeometry x="-0.008" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-39" value="Yo wassup someone just attempted to signout" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-48" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-41" target="y-nD3eVg9ZiISeScWmFu-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-49" value="Checkin who you is" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-48">
+          <mxGeometry x="-0.046" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-41" value="Cool but like whats your auth token" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="645" y="620" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-51" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-47" target="y-nD3eVg9ZiISeScWmFu-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-52" value="Cool Token Authentication" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-51">
+          <mxGeometry x="-0.0027" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-47" value="Uh its &amp;lt;insert GUID token here&amp;gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="680" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-54" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y-nD3eVg9ZiISeScWmFu-50" target="y-nD3eVg9ZiISeScWmFu-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-55" value="Do not let him out" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-nD3eVg9ZiISeScWmFu-54">
+          <mxGeometry x="0.0114" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-50" value="alr alr yours is valid until like 2030, go tell him no and imma log this event" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="645" y="710" width="135" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-53" value="Cool beans ttyl bbg" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-57" value="HTTP CALLS" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="205" y="76" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="y-nD3eVg9ZiISeScWmFu-58" value="API CALLS (JSON)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="500" y="76" width="80" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
