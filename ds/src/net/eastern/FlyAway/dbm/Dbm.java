@@ -3,6 +3,7 @@ package net.eastern.FlyAway.dbm;
 import net.eastern.FlyAway.util.Utils;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Dbm {
     private Connection dbconn;
@@ -35,7 +36,7 @@ public class Dbm {
             }
 
             int times = 0;
-            StringBuilder resparray = new StringBuilder();
+            ArrayList<String> records = new ArrayList<String>();
             while (rs.next()) {
                 times++;
                 StringBuilder strresponse = new StringBuilder();
@@ -45,19 +46,20 @@ public class Dbm {
                 for (int i = 0; i < metadata.getColumnCount(); i++) {
                     strresponse.append(rs.getString(i + 1)).append(",");
                 }
-                strresponse.substring(0, strresponse.length() - 1);
-                resparray.append(strresponse).append(",");
+                String response = strresponse.toString().substring(0, strresponse.toString().length() - 1);
+                records.add(response);
             }
-            if (!resparray.isEmpty()) resparray.substring(0, resparray.length() - 1);
-            String[] resparraylist = resparray.toString().split(",");
+            String[] resparraylist = records.getFirst().split(",");
             if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
-            if (times == 1) return new DbmResponse(DbmResponseType.OneResponse, resparraylist[0]);
-            return new DbmResponse(DbmResponseType.ResponseList, times, resparraylist);
+            if (times == 1) {
+                return new DbmResponse(DbmResponseType.OneResponse, resparraylist);
+            } else {
+                return new DbmResponse(DbmResponseType.ResponseList, times, records);
+            }
         } else {
             stmt.executeUpdate(sql);
             return new DbmResponse(DbmResponseType.ResponseEmpty);
         }
-
     }
 
     public void setConnection(Connection conn) {

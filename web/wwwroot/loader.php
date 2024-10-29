@@ -5,4 +5,7 @@ session_start();
 if ((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)&&($_SERVER["REQUEST_URI"]!="/login/")) {
     header("location: /login/");
 }
+/*
+
+*/
 ?>

@@ -2,6 +2,9 @@ package net.eastern.FlyAway.api;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import net.eastern.FlyAway.auth.AuthToken;
+import net.eastern.FlyAway.auth.Authenticator;
+import net.eastern.FlyAway.auth.TokenStatus;
 import net.eastern.FlyAway.util.Utils;
 import org.json.JSONObject;
 
@@ -46,6 +49,30 @@ public class APIHandler implements HttpHandler {
                     System.out.println(username);
                     System.out.println(passwordhash);
                     System.out.println(sessionid);
+                    AuthToken token = Authenticator.Authenticate_User(username,passwordhash,sessionid);
+
+                    if (token.getStatus() == TokenStatus.VALIDATED) {
+                        exchange.getResponseHeaders().set("Content-Type", "application/json");
+                        exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
+                        data = Templates.generateAuthReturnJSON(username,sessionid,token);
+                        exchange.sendResponseHeaders(200, data.length());
+                        OutputStream os = exchange.getResponseBody();
+                        os.write(data.toString().getBytes());
+                        os.close();
+                    } else {
+                        exchange.getResponseHeaders().set("Content-Type", "application/json");
+                        exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
+                        data = Templates.generateAuthReturnJSON(username,sessionid,token);
+                        exchange.sendResponseHeaders(401, data.length());
+                        OutputStream os = exchange.getResponseBody();
+                        os.write(data.toString().getBytes());
+                        os.close();
+                    }
+
+                }
+                if (obj.has("ValidateToken")) {
+                    String token = obj.getString("ValidateToken");
+
                 }
                 if (obj.has("Message")) {
                     Utils.Infoprintln("MESSAGE FROM [" + exchange.getRemoteAddress() + "]: " + obj.getString("Message"));

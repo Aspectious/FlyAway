@@ -1,5 +1,8 @@
 package net.eastern.FlyAway.util;
 
+import net.eastern.FlyAway.auth.AuthToken;
+import net.eastern.FlyAway.auth.TokenStatus;
+import net.eastern.FlyAway.auth.User;
 import net.eastern.FlyAway.dbm.Dbm;
 import net.eastern.FlyAway.dbm.DbmQueryType;
 import net.eastern.FlyAway.dbm.DbmResponse;
@@ -9,9 +12,50 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
+import java.util.Objects;
 
 public class DMBAPI {
+    public User fetchUserByUsername(String username) throws SQLException {
+        User usr;
+        Dbm dbm = new Dbm();
+        Connection conn = dbm.getConnection();
+        try {
+            DbmResponse resp = dbm.executeSQL(conn,DbmQueryType.QUERY,"SELECT * FROM flyawaydev.accts WHERE un=\""+ username +"\";");
+            String[] userinfo = resp.getContentArray();
+            if (Objects.equals(userinfo[5], "null")) {
+                usr = new User(userinfo[1], userinfo[2], Integer.parseInt(userinfo[3]), LocalDateTime.parse(userinfo[4].replace(" ", "T")));
+                } else {
+                usr = new User(userinfo[1], userinfo[2], Integer.parseInt(userinfo[3]), LocalDateTime.parse(userinfo[4].replace(" ", "T")), LocalDateTime.parse(userinfo[5].replace(" ","T")));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }
+        return usr;
+    }
+    public void addToken(AuthToken token) throws SQLException {
+        String status;
+        int isAdmin;
+        if (token.getStatus() == TokenStatus.VALIDATED) {
+            status = "VALIDATED";
+        } else status="INVALIDATED";
+        if (token.isAdmin()) isAdmin = 1; else isAdmin = 0;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String createdate = token.getCreationDate().format(formatter);
+        String expdate = token.getExpirationDate().format(formatter);
+
+        Dbm dbm = new Dbm();
+        Connection conn = dbm.getConnection();
+        try {
+            dbm.executeSQL(conn,DbmQueryType.UPDATE,
+                    "INSERT INTO flyawaydev.tokens (token, status, admin, sessionid, creationdate, expdate)" +
+                            "VALUES ('" + token.getCode()+ "' , '"+ status + "', " + isAdmin + ", '"+token.getssid()+ "', '" + createdate + "', '" + expdate +"');");
+        } catch (SQLException ex) {
+            throw ex;
+        }
+    }
     public int processCommand(String fullcommand) throws SQLException {
 
         int result;

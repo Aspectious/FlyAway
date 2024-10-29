@@ -1,8 +1,10 @@
 package net.eastern.FlyAway.dbm;
 
+import java.util.ArrayList;
+
 public class DbmResponse {
     private final DbmResponseType responseType;
-    private final String[] content;
+    private final Object[] content;
 
     // For when DB has no response
     public DbmResponse(DbmResponseType type) {
@@ -13,26 +15,35 @@ public class DbmResponse {
     }
 
     // For when DB has only one response
-    public DbmResponse(DbmResponseType type, String content) {
+    public DbmResponse(DbmResponseType type, String[] Record) {
         if (type != DbmResponseType.OneResponse) throw new IllegalStateException("Invalid DbmResponse Type");
         this.responseType = type;
-        this.content = new String[1];
-        this.content[0] = content;
+        this.content = Record;
     }
 
     // For when DB has multiple responses
-    public DbmResponse(DbmResponseType type, int responseLength, String[] columns) {
+    public DbmResponse(DbmResponseType type, int responses, ArrayList<String> records) {
         if (type != DbmResponseType.ResponseList) throw new IllegalStateException("Invalid DbmResponse Type");
         this.responseType = type;
-        this.content = new String[responseLength];
-        System.arraycopy(columns, 0, this.content, 0, responseLength);
+        this.content = new String[records.size()][records.getFirst().split(",").length];
+        for (int i=0; i<records.size(); i++) {
+            System.arraycopy(records.get(i).split(","), 0, this.content[i], 0, records.get(i).split(",").length);
+        }
     }
 
     public DbmResponseType getType() {
         return this.responseType;
     }
-
+    public String[] getContentArrayFromResponse(int responsenum) {
+        if (this.responseType != DbmResponseType.ResponseList) {
+            throw new IllegalStateException("Invalid DbmResponse Type");
+        }
+        return (String[]) this.content[responsenum];
+    }
     public String[] getContentArray() {
-        return this.content;
+        if (this.responseType == DbmResponseType.ResponseList) {
+            throw new IllegalStateException("Invalid DbmResponse Type");
+        }
+        return (String[]) this.content;
     }
 }
