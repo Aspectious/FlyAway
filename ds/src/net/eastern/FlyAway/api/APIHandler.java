@@ -28,13 +28,22 @@ public class APIHandler implements HttpHandler {
         }
         Utils.Infoprintln("Request Body: " + body);
 
-
-        String data = new Message("200 Okie dokie").getRawJSON();
-        exchange.getResponseHeaders().set("Content-Type", "application/json");
-        exchange.getResponseHeaders().set("Access-Control-Allow-Origin","*");
-        exchange.sendResponseHeaders(200, data.length());
-        OutputStream os = exchange.getResponseBody();
-        os.write(data.toString().getBytes());
-        os.close();
+        String data;
+        if (!exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
+            data = new Message("200 Okie dokie").getRawJSON();
+            exchange.sendResponseHeaders(200, data.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(data.toString().getBytes());
+            os.close();
+        } else {
+            data = "";
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Headers","Content-Type");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Methods","POST");
+            exchange.sendResponseHeaders(204, 0);
+            exchange.getResponseBody().close();
+        }
     }
 }

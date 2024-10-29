@@ -1,4 +1,3 @@
-
 async function login() {
     var username = document.getElementById("uname").value;
     var password = document.getElementById("pwd").value;
@@ -17,13 +16,15 @@ async function login() {
         console.log(request);
         let h = new Headers();
         h.set("Accept", "application/json");
-        h.set("Access-Control-Allow-Origin", "*");
         h.set("Content-Type", "application/json");
-        const response = await fetch("https://localhost:8000/", {
+        await fetch("https://localhost:8000/", {
             headers:h,
             method: "POST",
             body: JSON.stringify(request)
-        });
+        }).then(function (res) {
+            console.log(res);
+        })
+
 
         console.log(request);
     }
