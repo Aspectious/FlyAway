@@ -4,21 +4,24 @@
         <script src="/lib/react.js"></script>
         <script src="/lib/react-dom.js"></script>
         <script src="/lib/babel.min.js"></script>
-        <title>Sus</title>
         <link rel="stylesheet" href="/css/stylesheet-master.css"/>
-        <script type='module' src="/js/index.js"></script>
+
+
+        <title>Flyaway Portal</title>
     </head>
-<body>
-<div id="mydiv"></div>
+    <body>
+        <script type="text/babel">
+            function App() {
+                return (
+                    <div className="App">
+                        <h1>Bleh</h1>
+                        <h2>Testing 123</h2>
+                    </div>
+                );
+            }
 
-<script type="text/babel">
-    function Hello() {
-        return <h1>Hello World!</h1>;
-    }
-
-    const container = document.getElementById('mydiv');
-    const root = ReactDOM.createRoot(container);
-    root.render(<Hello />)
-</script>
-</body>
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(App);
+        </script>
+    </body>
 </html>
