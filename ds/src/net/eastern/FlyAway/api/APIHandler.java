@@ -2,12 +2,16 @@ package net.eastern.FlyAway.api;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import net.eastern.FlyAway.api.obj.Message;
 import net.eastern.FlyAway.util.Utils;
+import org.json.JSONObject;
 
+import javax.json.*;
+import javax.json.stream.JsonParser;
+import javax.json.stream.JsonParserFactory;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.StringReader;
 
 /**
  * @author aspectious
@@ -18,21 +22,57 @@ public class APIHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        Utils.Infoprintln("New Request From " + exchange.getRemoteAddress() + " On Path " + exchange.getRequestURI());
-        Utils.Infoprintln("Request Header: " + exchange.getRequestHeaders());
-        InputStreamReader sr = new InputStreamReader(exchange.getRequestBody());
-        String body = "";
-        int r;
-        while ((r = sr.read()) != -1) {
-            body += (char) r;
-        }
-        Utils.Infoprintln("Request Body: " + body);
 
         String data;
         if (!exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+            Utils.Infoprintln("New Request From " + exchange.getRemoteAddress() + " On Path " + exchange.getRequestURI());
+            Utils.Infoprintln("Request Header: " + exchange.getRequestHeaders());
+            InputStreamReader sr = new InputStreamReader(exchange.getRequestBody());
+            String body = "";
+            int r;
+            while ((r = sr.read()) != -1) {
+                body += (char) r;
+            }
+            Utils.Infoprintln("Request Body: " + body);
+
+            try {
+                JSONObject obj = new JSONObject(body);
+                if (obj.has("LoginRequest")) {
+                    String username,passwordhash,sessionid;
+                    username = obj.getJSONObject("LoginRequest").getString("username");
+                    passwordhash = obj.getJSONObject("LoginRequest").getString("password");
+                    sessionid = obj.getJSONObject("LoginRequest").getString("sessionID");
+
+                    System.out.println(username);
+                    System.out.println(passwordhash);
+                    System.out.println(sessionid);
+                }
+                if (obj.has("Message")) {
+                    Utils.Infoprintln("MESSAGE FROM [" + exchange.getRemoteAddress() + "]: " + obj.getString("Message"));
+                }
+                for (String key : obj.keySet()) {
+                    System.out.println(obj.has("LoginRequest"));
+                    System.out.println(key + ":" + obj.get(key));
+                }
+
+            } catch (Exception e) {
+                System.err.println(e);
+                exchange.getResponseHeaders().set("Content-Type", "application/json");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
+                data = "{\"message\":\"400 MALFORMED REQUEST\"}";
+                exchange.sendResponseHeaders(400, data.length());
+                OutputStream os = exchange.getResponseBody();
+                os.write(data.toString().getBytes());
+                os.close();
+                return;
+            }
+
+
+
+
             exchange.getResponseHeaders().set("Content-Type", "application/json");
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
-            data = new Message("200 Okie dokie").getRawJSON();
+            data = "{\"message\":\"200 OK\"}";
             exchange.sendResponseHeaders(200, data.length());
             OutputStream os = exchange.getResponseBody();
             os.write(data.toString().getBytes());
