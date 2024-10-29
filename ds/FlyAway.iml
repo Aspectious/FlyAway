@@ -17,5 +17,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" exported="" name="mysql-connector-j" level="project" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="json-java" level="project" />
   </component>
 </module>
