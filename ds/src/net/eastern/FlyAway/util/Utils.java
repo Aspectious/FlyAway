@@ -56,10 +56,6 @@ public class Utils {
         while (br.ready()){
             line = br.readLine();
             String[] arr = line.split(",");
-
-            for (String item : arr) {
-                System.out.println(item);
-            }
             map.put(arr[1],new String[]{arr[2],arr[0]});
 
         }
@@ -99,8 +95,6 @@ public class Utils {
     public static String getmimeTypeFromURL(String url) throws FileNotFoundException {
         checkIfFileExists(url);
         String item = map.get(url)[1];
-        System.out.println(url);
-        System.out.println(item);
         return getMimeType(item);
     }
 

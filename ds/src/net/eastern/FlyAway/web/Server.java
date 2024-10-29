@@ -1,8 +1,6 @@
 package net.eastern.FlyAway.web;
 
-import com.sun.net.httpserver.HttpsConfigurator;
-import com.sun.net.httpserver.HttpsParameters;
-import com.sun.net.httpserver.HttpsServer;
+import com.sun.net.httpserver.*;
 import net.eastern.FlyAway.util.Utils;
 
 import javax.net.ssl.*;
@@ -62,9 +60,14 @@ public class Server {
                 }
             }
         });
-        server.createContext("/", new FileHandler());
-        server.createContext("/validate", new ValidationHandler());
         server.setExecutor(null);
+    }
+
+    public HttpContext createContext(String path, HttpHandler handler) {
+        return server.createContext(path, handler);
+    }
+
+    public void start() {
         server.start();
     }
 
