@@ -17,9 +17,15 @@
     <div class="login-modal">
         <div class="login-modal-content">
             <div class="login-modal-content-header">
-                <img class="login-modal-icon" src="/login/img/flyaway-logo.png" alt="flyaway logo"></img>
-                <div class="login-modal-title">Sign In</div>
+                <span class="login-modal-icon">
+                    <img src="/img/flyaway-logo.png" width="100" height="100" alt="flyaway logo"></img>
+                </span>
+                <span class="login-modal-icon-title">
+
+                    FlyAway
+                </span>
             </div>
+            <div class="login-modal-title">Sign In</div>
             <div class="login-modal-cred-panel">
                 <input type="text" id="uname" class="login-modal-cred-input" placeholder="Username"></input>
                 <input type="password" id="pwd" class="login-modal-cred-input" placeholder="Password"></input>
