@@ -12,8 +12,30 @@ int main()
         }
 
         cpr::SslOptions sslOpts = cpr::Ssl(cpr::ssl::VerifyHost{false}, cpr::ssl::VerifyPeer{false},cpr::ssl::VerifyStatus{false});
-        auto response = cpr::Get(cpr::Url{"https://localhost:8000/validate?id=" + std::to_string(id)}, sslOpts);
-        std::cout << response.text << std::endl;
+
+        cpr::Response r = cpr::Post(cpr::Url{"https://192.168.1.193:8000/"},
+                   cpr::Body{"{\"Message\":\"test\"}"},
+                   cpr::Header{{"Content-Type", "application/json"}},sslOpts);
+        std::cout << r.text << std::endl;
+
+        /*
+         * {
+         *   "args": {},
+         *   "data": "",
+         *   "files": {},
+         *   "form": {
+         *     "key": "value"
+         *   },
+         *   "headers": {
+         *     ..
+         *     "Content-Type": "application/x-www-form-urlencoded",
+         *     ..
+         *   },
+         *   "json": null,
+         *   "url": "http://www.httpbin.org/post"
+         * }
+         */
+
 
     }
     return 0;
