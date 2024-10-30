@@ -8,6 +8,9 @@
       <excludeFolder url="file://$MODULE_DIR$/bin" />
     </content>
     <content url="file://$MODULE_DIR$/build" />
+    <content url="file://$MODULE_DIR$/lib">
+      <excludeFolder url="file://$MODULE_DIR$/lib" />
+    </content>
     <content url="file://$MODULE_DIR$/res">
       <sourceFolder url="file://$MODULE_DIR$/res" type="java-resource" />
     </content>
@@ -21,5 +24,6 @@
     <orderEntry type="library" name="json-java" level="project" />
     <orderEntry type="library" name="javax.json-api-1.0" level="project" />
     <orderEntry type="library" name="glassfish.javax.json" level="project" />
+    <orderEntry type="library" name="javax.json-1.1.4" level="project" />
   </component>
 </module>

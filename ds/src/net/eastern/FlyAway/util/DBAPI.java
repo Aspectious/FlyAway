@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Objects;
 
-public class DMBAPI {
+public class DBAPI {
     public User fetchUserByUsername(String username) throws SQLException {
         User usr;
         Dbm dbm = new Dbm();
@@ -56,6 +56,20 @@ public class DMBAPI {
             throw ex;
         }
     }
+
+
+
+
+
+
+
+    /**
+     * DEPRECATED CODE, DO NOT USE
+     * @deprecated
+     * @param fullcommand
+     * @return
+     * @throws SQLException
+     */
     public int processCommand(String fullcommand) throws SQLException {
 
         int result;

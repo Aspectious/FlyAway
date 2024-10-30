@@ -8,8 +8,8 @@
       <element id="module-output" name="FlyAway" />
       <element id="library" level="project" name="mysql-connector-j" />
       <element id="library" level="project" name="json-java" />
-      <element id="library" level="project" name="javax.json-api-1.0" />
       <element id="library" level="project" name="glassfish.javax.json" />
+      <element id="library" level="project" name="javax.json-api-1.0" />
     </root>
   </artifact>
 </component>

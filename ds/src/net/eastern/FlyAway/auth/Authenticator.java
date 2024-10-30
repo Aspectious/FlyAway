@@ -1,6 +1,6 @@
 package net.eastern.FlyAway.auth;
 
-import net.eastern.FlyAway.util.DMBAPI;
+import net.eastern.FlyAway.util.DBAPI;
 
 import java.sql.SQLException;
 
@@ -12,7 +12,7 @@ public class Authenticator {
         User usr;
         AuthToken token;
         try {
-            usr = new DMBAPI().fetchUserByUsername(Username);
+            usr = new DBAPI().fetchUserByUsername(Username);
             if (!usr.getPasswordhash().equals(pwdhash)) {
                 return new AuthToken();
             }
@@ -24,7 +24,7 @@ public class Authenticator {
             throw new RuntimeException(e);
         }
         try {
-            new DMBAPI().addToken(token);
+            new DBAPI().addToken(token);
         } catch (SQLException e) {
             System.err.println(e);
         }
