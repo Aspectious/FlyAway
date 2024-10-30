@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class Dbm {
     private Connection dbconn;
 
+    /**
+     * Constructor.
+     */
     public Dbm() {
         String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
         String username = System.getenv("FLA_U");
@@ -15,6 +18,11 @@ public class Dbm {
         dbconn = this.attemptConnection(url, username, pwd);
     }
 
+    /**
+     * Gets the Connection to the database using environmental variables
+     * @return
+     * @throws SQLException
+     */
     public Connection getConnection() throws SQLException {
         String url = "jdbc:mysql://" + System.getenv("FLA_IP") + "/flyawaydev";
         String username = System.getenv("FLA_U");
@@ -22,6 +30,15 @@ public class Dbm {
         return DriverManager.getConnection(url, username, pwd);
     }
 
+    /**
+     * The Great Big Handler that Handles all SQL Connections to the Database.
+     * Makes life easier for us all, and is also a pain in the ass to mess with.
+     * @param conn
+     * @param qtype
+     * @param sql
+     * @return
+     * @throws SQLException
+     */
     public DbmResponse executeSQL(Connection conn, DbmQueryType qtype, String sql) throws SQLException {
         Statement stmt = conn.createStatement();
 
@@ -62,27 +79,24 @@ public class Dbm {
         }
     }
 
+    /**
+     * Used to manually set the connecion.
+     * Needed at times when a reconnect is needed.
+     * @param conn
+     */
     public void setConnection(Connection conn) {
         this.dbconn = conn;
     }
 
-    public void closeConnection() {
-        /*
-        try {
-            System.out.println("Closing Connection");
-            //dbconn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-         */
-    }
-
-    /*
-        For Production, the url will be jdbc:mysql://localhost:3306/FlyAway
-        Username java, password is a hashed secret in an Environmental Variable
-        Feel Free to use any other url or user/pass combo for dev
-        TODO: NEVER PUT ANY RAW PASSWORDS IN AND COMMIT, IT IS MOSTLY IRREVERSIBLE
+    /**
+     * For Production, the url will be jdbc:mysql://localhost:3306/FlyAway
+     * Username java, password is a hashed secret in an Environmental Variable
+     * Feel Free to use any other url or user/pass combo for dev
+     * TODO: NEVER PUT ANY RAW PASSWORDS IN AND COMMIT, IT IS MOSTLY IRREVERSIBLE
+     * @param url
+     * @param user
+     * @param pass
+     * @return
      */
     public Connection attemptConnection(String url, String user, String pass) {
         Utils.Debugprintln("Attempting to connect to " + url);

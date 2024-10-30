@@ -6,7 +6,20 @@ import org.json.JSONObject;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This Class is used to help build returning JSON Responses in an easy-to-use multi-situational way
+ * Life is pain.
+ * @author aspectious
+ */
 public class Templates {
+
+    /**
+     * AuthResponse JSON Template Builder.
+     * @param username
+     * @param ssid
+     * @param token
+     * @return
+     */
     static String generateAuthReturnJSON(String username, String ssid, AuthToken token) {
         String response;
         if (token.getStatus() != TokenStatus.VALIDATED) {
