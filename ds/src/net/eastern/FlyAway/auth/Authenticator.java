@@ -5,9 +5,18 @@ import net.eastern.FlyAway.util.DBAPI;
 import java.sql.SQLException;
 
 /**
- * @
+ * This Class's Purpose is to handle User Authentication and Token Issuance with the DBM and the API.
+ * @author aspectious
  */
 public class Authenticator {
+
+    /**
+     * Haha User Auth go brrr
+     * @param Username
+     * @param pwdhash
+     * @param ssid
+     * @return
+     */
     public static AuthToken Authenticate_User(String Username, String pwdhash, String ssid) {
         User usr;
         AuthToken token;

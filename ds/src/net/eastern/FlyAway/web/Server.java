@@ -12,6 +12,11 @@ public class Server {
     private HttpsServer server;
     private SSLContext sslContext;
 
+    /**
+     * Creates Server.
+     * @param portnum
+     * @throws Exception
+     */
     public Server(int portnum) throws Exception {
         try {
             startHttpsServer(portnum);
@@ -23,6 +28,11 @@ public class Server {
 
     }
 
+    /**
+     * Despite not aptly named, this configures the server for HTTPS.
+     * @param portnum
+     * @throws Exception
+     */
     public void startHttpsServer(int portnum) throws Exception {
         InetSocketAddress addr = new InetSocketAddress(portnum);
         Utils.Infoprintln("Starting up https Server on Port " + portnum);
@@ -63,10 +73,19 @@ public class Server {
         server.setExecutor(null);
     }
 
+    /**
+     * Creates a Context Path to a handler for the Server.
+     * @param path
+     * @param handler
+     * @return
+     */
     public HttpContext createContext(String path, HttpHandler handler) {
         return server.createContext(path, handler);
     }
 
+    /**
+     * Actually Starts the Server.
+     */
     public void start() {
         server.start();
     }

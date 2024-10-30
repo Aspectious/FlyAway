@@ -8,13 +8,10 @@ import net.eastern.FlyAway.auth.TokenStatus;
 import net.eastern.FlyAway.util.Utils;
 import org.json.JSONObject;
 
-import javax.json.*;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParserFactory;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.StringReader;
 
 /**
  * @author aspectious
@@ -23,9 +20,17 @@ import java.io.StringReader;
  */
 public class APIHandler implements HttpHandler {
 
+    /**
+     * Handles Everything JSON-API-HTTP-related because we are cool
+     * @param exchange the exchange containing the request from the client and used to send the response
+     * @throws IOException
+     */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 
+        /**
+         * This is a bit complex but you know what it allows for CORS Requests so whatever
+         */
         String data;
         if (!exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
             Utils.Infoprintln("New Request From " + exchange.getRemoteAddress() + " On Path " + exchange.getRequestURI());
@@ -38,8 +43,16 @@ public class APIHandler implements HttpHandler {
             }
             Utils.Infoprintln("Request Body: " + body);
 
+
+            /**
+             * Now is the time where we actually parse the JSON Api Requests and Respond to them
+             */
             try {
-                JSONObject obj = new JSONObject(body);
+                JSONObject obj = new JSONObject(body); // Parses the JSON From the Body
+
+                /**
+                 * Login Handler and Token Issuer, Yippee
+                 */
                 if (obj.has("LoginRequest")) {
                     String username,passwordhash,sessionid;
                     username = obj.getJSONObject("LoginRequest").getString("username");
@@ -70,19 +83,38 @@ public class APIHandler implements HttpHandler {
                     }
 
                 }
+                /**
+                 * Validates Token's Authenticity
+                 */
                 if (obj.has("ValidateToken")) {
                     String token = obj.getString("ValidateToken");
 
                 }
+                /**
+                 * Sends a message to the server backend.
+                 */
                 if (obj.has("Message")) {
                     Utils.Infoprintln("MESSAGE FROM [" + exchange.getRemoteAddress() + "]: " + obj.getString("Message"));
                 }
+
+                /**
+                 * Debug: Used to see what keys are being sent where.
+                 * Refer to https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
+                 * As well as https://docs.oracle.com/javaee/7/api/javax/json/stream/JsonParser.html
+                 * For understanding.
+                 *
+                 * Deprecated.
+                 */
                 for (String key : obj.keySet()) {
                     System.out.println(obj.has("LoginRequest"));
                     System.out.println(key + ":" + obj.get(key));
                 }
 
             } catch (Exception e) {
+
+                /**
+                 * If something goes wrong while parsing JSON, the syntax is most likely bad, blame it on the client.
+                 */
                 System.err.println(e);
                 exchange.getResponseHeaders().set("Content-Type", "application/json");
                 exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
@@ -95,8 +127,9 @@ public class APIHandler implements HttpHandler {
             }
 
 
-
-
+            /**
+             * Send the Actual Client Data
+             */
             exchange.getResponseHeaders().set("Content-Type", "application/json");
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
             data = "{\"message\":\"200 OK\"}";
@@ -105,6 +138,10 @@ public class APIHandler implements HttpHandler {
             os.write(data.toString().getBytes());
             os.close();
         } else {
+
+            /**
+             * Used for CORS Requests. DO NOT MODIFY, MUST HAVE EMPTY BODY WITH 204 CODE
+             */
             data = "";
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
             exchange.getResponseHeaders().add("Access-Control-Allow-Headers","Content-Type");

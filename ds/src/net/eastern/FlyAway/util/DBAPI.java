@@ -17,6 +17,12 @@ import java.util.InputMismatchException;
 import java.util.Objects;
 
 public class DBAPI {
+    /**
+     * Grabs a User Object from the Database.
+     * @param username
+     * @return
+     * @throws SQLException
+     */
     public User fetchUserByUsername(String username) throws SQLException {
         User usr;
         Dbm dbm = new Dbm();
@@ -34,6 +40,13 @@ public class DBAPI {
         }
         return usr;
     }
+
+
+    /**
+     * Adds a token entry into the database.
+     * @param token
+     * @throws SQLException
+     */
     public void addToken(AuthToken token) throws SQLException {
         String status;
         int isAdmin;

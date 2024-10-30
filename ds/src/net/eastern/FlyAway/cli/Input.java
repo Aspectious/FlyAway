@@ -4,11 +4,10 @@ import net.eastern.FlyAway.dbm.Dbm;
 import net.eastern.FlyAway.dbm.DbmQueryType;
 import net.eastern.FlyAway.dbm.DbmResponse;
 import net.eastern.FlyAway.dbm.DbmResponseType;
-import net.eastern.FlyAway.util.HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException;
+import net.eastern.FlyAway.util.ComedicallyLargeErrorNameException;
 import net.eastern.FlyAway.util.Utils;
 
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -167,10 +166,10 @@ public class Input {
                             }
                             // We do a little Tomfoolery because I'mm too lazy to implement this yet
                             System.out.println("HOLY FUCKING SHIT OH FUCK I HAVENT BEEN CODED TO HANDLE THAT YET IM GONNA DIE");
-                            throw new HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException("oopsie i returned multiple columns teehee :3");
+                            throw new ComedicallyLargeErrorNameException("oopsie i returned multiple columns teehee :3");
                         }
 
-                    } catch (HolyFuckingShitIHaveNoClueWhatToDoBecauseIHaveNotBeenProgrammedToDoThatYetException e) {
+                    } catch (ComedicallyLargeErrorNameException e) {
                         e.printStackTrace(System.err);
                         System.exit(-934782374);
                     }
