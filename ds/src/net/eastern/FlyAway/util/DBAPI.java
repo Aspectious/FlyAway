@@ -97,13 +97,13 @@ public class DBAPI {
             AuthToken token;
             if (resp.getContentArray()[6].equals("null")) {
 
-                cdt = LocalDateTime.parse(resp.getContentArray()[5]).atOffset(ZoneOffset.UTC).atZoneSameInstant(ZoneId.systemDefault());
+                cdt = LocalDateTime.parse(resp.getContentArray()[5].replace(" ", "T")).atOffset(ZoneOffset.UTC).atZoneSameInstant(ZoneId.systemDefault());
                 token = new AuthToken(sessionid, code, "SYSTEM", status, isAdmin, cdt);
             } else {
 
-                cdt = LocalDateTime.parse(resp.getContentArray()[5]).atOffset(ZoneOffset.UTC).atZoneSameInstant(ZoneId.systemDefault());
+                cdt = LocalDateTime.parse(resp.getContentArray()[5].replace(" ", "T")).atOffset(ZoneOffset.UTC).atZoneSameInstant(ZoneId.systemDefault());
 
-                edt = LocalDateTime.parse(resp.getContentArray()[6]).atOffset(ZoneOffset.UTC).atZoneSameInstant(ZoneId.systemDefault());
+                edt = LocalDateTime.parse(resp.getContentArray()[6].replace(" ", "T")).atOffset(ZoneOffset.UTC).atZoneSameInstant(ZoneId.systemDefault());
                 token = new AuthToken(sessionid, code, "SYSTEM", status, isAdmin, cdt, edt);
             }
             return token;
