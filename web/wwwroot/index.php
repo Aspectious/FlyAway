@@ -4,13 +4,12 @@
 
 <head>
     <meta charset="utf-8"/>
-    <head>
-        <!--meta http-equiv='refresh' content='0; URL=/login/'-->
-    </head>
     <link rel="icon" href="/img/flyaway-logo-filled.ico" type="image/x-icon"/>
-    <title><?php include('/components/titlemode')?> - Dashboard</title>
+    <link rel="stylesheet" href="css/stylesheet-default.css"
+    <link rel="stylesheet" href="index.css"/>
+    <title><?php include('components/titlemode')?> - Dashboard</title>
 </head>
-<body>
+<body id="root">
 <?php   include('components/header.html');?>
 
 <?php   include('components/footer.html');  ?>
