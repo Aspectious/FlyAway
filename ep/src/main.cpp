@@ -10,11 +10,13 @@ int main()
         if (id == -1){
             break;
         }
-
+        std::string query = "{\"sendrecord\":\"" + std::to_string(id) + "\"}";
         cpr::SslOptions sslOpts = cpr::Ssl(cpr::ssl::VerifyHost{false}, cpr::ssl::VerifyPeer{false},cpr::ssl::VerifyStatus{false});
 
         cpr::Response r = cpr::Post(cpr::Url{"https://192.168.1.193:8000/"},
-                   cpr::Body{"{\"Message\":\"test\"}"},
+
+
+                   cpr::Body{query},
                    cpr::Header{{"Content-Type", "application/json"}},sslOpts);
         std::cout << r.text << std::endl;
 
