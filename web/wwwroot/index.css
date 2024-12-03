@@ -73,11 +73,20 @@ html,body {
     flex-basis:400px;
     margin:20px;
     padding:10px;
+    text-align: center;
+    text-size-adjust: auto;
 }
 .content-header-account:hover {
     background-color: var(--c-panel-secondary);
     opacity: 80%;
+    text-align: center;
     border-radius: 10px;
+    padding:20px;
+    margin:10px;
+    border-radius: 10px;
+    transition: background-color 250ms,color 250ms;
+    color: var(--c-panel-primary);
 }
+
 
 

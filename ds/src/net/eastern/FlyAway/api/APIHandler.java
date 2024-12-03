@@ -8,6 +8,7 @@ import net.eastern.FlyAway.auth.TokenStatus;
 import net.eastern.FlyAway.util.DBAPI;
 import net.eastern.FlyAway.util.Utils;
 import org.json.JSONObject;
+import net.eastern.FlyAway.cli.Input;
 
 
 import java.io.IOException;
@@ -123,6 +124,13 @@ public class APIHandler implements HttpHandler {
                         os.write(data.toString().getBytes());
                         os.close();
                     }
+
+                }
+
+                if(obj.has("sendrecord")) {
+                    Utils.Infoprintln("SENDRECORD FROM [" + exchange.getRemoteAddress() + "]: " + obj.getString("sendrecord"));
+                    String record = obj.getString("sendrecord");
+                    System.out.println(obj.getString("sendrecord"));
 
                 }
                 /*

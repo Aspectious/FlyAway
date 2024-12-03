@@ -22,7 +22,12 @@
         <div id="content-root" class="content-root">
             <div class="content-header">
                 <div class="content-header-searchbar"></div>
-                <div class="content-header-account"></div>
+
+               <a class="content-header-account"  onclick="return confirm('Log out?')">Logout</a>
+<!--                <script> if (confirm("Log out")) {-->
+<!--                        window.location.href = "/logout.php";-->
+<!--                    }</script>-->
+
             </div>
         </div>
     </body>
