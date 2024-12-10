@@ -42,6 +42,10 @@ public class Templates {
         }
         return response;
     }
+    static String generateMessage(String message) {
+        String response = "{\"Message\":\"" + message + "\"}";
+        return response;
+    }
     static String generateValidationResponseJSON(boolean validated) {
         String response;
         if (validated) {

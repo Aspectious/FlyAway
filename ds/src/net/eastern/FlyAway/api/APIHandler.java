@@ -5,10 +5,10 @@ import com.sun.net.httpserver.HttpHandler;
 import net.eastern.FlyAway.auth.AuthToken;
 import net.eastern.FlyAway.auth.Authenticator;
 import net.eastern.FlyAway.auth.TokenStatus;
+import net.eastern.FlyAway.cli.Input;
 import net.eastern.FlyAway.util.DBAPI;
 import net.eastern.FlyAway.util.Utils;
 import org.json.JSONObject;
-import net.eastern.FlyAway.cli.Input;
 
 
 import java.io.IOException;
@@ -22,7 +22,6 @@ import java.util.Objects;
  * Kinda needed as one file as we do need to send a response at the end of the day.
  */
 public class APIHandler implements HttpHandler {
-
     /**
      * Handles Everything JSON-API-HTTP-related because we are cool
      * @param exchange the exchange containing the request from the client and used to send the response
@@ -130,7 +129,15 @@ public class APIHandler implements HttpHandler {
                 if(obj.has("sendrecord")) {
                     Utils.Infoprintln("SENDRECORD FROM [" + exchange.getRemoteAddress() + "]: " + obj.getString("sendrecord"));
                     String record = obj.getString("sendrecord");
-                    System.out.println(obj.getString("sendrecord"));
+                    System.out.println(record);
+                    Input input = new Input();
+                    input.processCommand("sendrecord " + record);
+                    data = Templates.generateMessage("alright all done");
+                    exchange.getResponseHeaders().set("Content-Type", "application/json");
+                    exchange.sendResponseHeaders(200, data.length());
+                    OutputStream os = exchange.getResponseBody();
+                    os.write(data.toString().getBytes());
+                    os.close();
 
                 }
                 /*

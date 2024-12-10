@@ -30,7 +30,7 @@ public class Input {
         doInputQueryCycle();
     }
 
-    private void processCommand(String fullcommand) throws SQLException {
+    public void processCommand(String fullcommand) throws SQLException {
         String[] brokencmd = fullcommand.toLowerCase().split(" ");
         String[] args = new String[brokencmd.length - 1];
         System.arraycopy(brokencmd, 1, args, 0, brokencmd.length - 1);
