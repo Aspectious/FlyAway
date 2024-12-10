@@ -20,7 +20,6 @@ public class Authenticator {
     public static AuthToken Authenticate_User(String Username, String pwdhash, String ssid) {
         User usr;
         AuthToken token;
-        try {
             usr = new DBAPI().fetchUserByUsername(Username);
             if (!usr.getPasswordhash().equals(pwdhash)) {
                 return new AuthToken();
@@ -29,14 +28,13 @@ public class Authenticator {
             if (usr.getPermsum() == 777) isadm = true;
             else isadm = false;
             token = new AuthToken(ssid,Username,isadm);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
             new DBAPI().addToken(token);
-        } catch (SQLException e) {
-            System.err.println(e);
-        }
         return token;
+    }
+    public static boolean CheckToken(String code) {
+        AuthToken token = new DBAPI().fetchToken(code);
+        if (token.getStatus() == TokenStatus.VALIDATED) {
+            return true;
+        } else return false;
     }
 }

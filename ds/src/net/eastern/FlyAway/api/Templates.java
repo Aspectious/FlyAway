@@ -42,4 +42,17 @@ public class Templates {
         }
         return response;
     }
+    static String generateMessage(String message) {
+        String response = "{\"Message\":\"" + message + "\"}";
+        return response;
+    }
+    static String generateValidationResponseJSON(boolean validated) {
+        String response;
+        if (validated) {
+            response = "{\"ValidationResponse\":{\"result\":\"200\"}}";
+        } else {
+            response = "{\"ValidationResponse\":{\"result\":\"401\"}}";
+        }
+        return response;
+    }
 }

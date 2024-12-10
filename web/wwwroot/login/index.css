@@ -1,9 +1,17 @@
+:root {
+    --c-panel-primary: #e3e3ea;
+    --c-panel-secondary: #535a65;
+    --c-accent: #2b91ff;
+    --c-accent-error: #ff4a4a;
+    --c-accent-warning: #ffdc67;
+    --c-accent-green: #00d412;
+}
 html,body {
     margin: 0;
     height: 100%;
 }
 #root {
-      background-image: url("/img/flyaway-bg.png");
+    background-image: url("/img/flyaway-bg.png");
     display: flex;
     flex-flow:column;
     height: 100%;
@@ -13,20 +21,51 @@ html,body {
     flex: 1 1 auto;
 
 }
+.login-modal-title {
+    text-align: center;
+    padding: 5px;
+}
 .login-modal-content {
-    background-color: #e3e3ea;
+    background-color: var(--c-panel-primary);
     padding: 30px;
     margin-top:10%;
     border-radius: 10px;
     margin-left:40%;
     margin-right:40%;
 }
+.login-modal-content-header {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow:row;
+}
+.login-modal-icon {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+.login-modal-icon-title {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+
+.login-modal-response-banner {
+    width: 95%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: var(--c-accent-warning);
+    margin-top:10px;
+    font-weight: bold;
+}
 
 .footer {
     font-family: sans-serif;
     opacity:70%;
     padding:20px;
-    background-color: #535a65;
-    color: #dcd8d8;
+    background-color: var(--c-panel-secondary);
+    color: var(--c-panel-primary);
     text-align:center;
 }
