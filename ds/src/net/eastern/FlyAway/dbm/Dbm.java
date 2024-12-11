@@ -66,9 +66,10 @@ public class Dbm {
                 String response = strresponse.toString().substring(0, strresponse.toString().length() - 1);
                 records.add(response);
             }
-            String[] resparraylist = records.getFirst().split(",");
+
             if (times == 0) return new DbmResponse(DbmResponseType.ResponseEmpty);
             if (times == 1) {
+                String[] resparraylist = records.getFirst().split(",");
                 return new DbmResponse(DbmResponseType.OneResponse, resparraylist);
             } else {
                 return new DbmResponse(DbmResponseType.ResponseList, times, records);

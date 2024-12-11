@@ -130,9 +130,9 @@ public class APIHandler implements HttpHandler {
                     Utils.Infoprintln("SENDRECORD FROM [" + exchange.getRemoteAddress() + "]: " + obj.getString("sendrecord"));
                     String record = obj.getString("sendrecord");
                     System.out.println(record);
-                    Input input = new Input();
-                    input.processCommand("sendrecord " + record);
-                    data = Templates.generateMessage("alright all done");
+                    new DBAPI().checkBadge(Integer.parseInt(record));
+                    data = "{\"message\":\"200 ok\"}";//Templates.generateValidationResponseJSON(true);
+                    System.out.println("Bro is validated");
                     exchange.getResponseHeaders().set("Content-Type", "application/json");
                     exchange.sendResponseHeaders(200, data.length());
                     OutputStream os = exchange.getResponseBody();

@@ -117,8 +117,8 @@ public class DBAPI {
      * @param idnum int
      * @param authToken String
      */
-    public boolean checkBadge(int idnum, String authToken) {
-        boolean tokenstatus = Authenticator.CheckToken(authToken);
+    public boolean checkBadge(int idnum) {
+        boolean tokenstatus = true;
         if (!tokenstatus) return false;
         try {
             Dbm dbm = new Dbm();
