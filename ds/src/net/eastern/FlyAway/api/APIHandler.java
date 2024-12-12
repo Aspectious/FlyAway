@@ -50,14 +50,39 @@ public class APIHandler implements HttpHandler {
             /*
              * Now is the time where we actually parse the JSON Api Requests and Respond to them
              */
+
+            // TODO: FIX FOR PRODUCTION, TEMPORARY FIX
+            String[] wtf = body.split("\"");
+            for (String str : wtf) {
+                System.out.println(str);
+                if (wtf[1] == "sendrecord"); {
+                    Utils.Infoprintln("SENDRECORD FROM [" + exchange.getRemoteAddress() + "]: " + wtf[3]);
+                    String record = wtf[3];
+                    System.out.println(record);
+                    new DBAPI().checkBadge(Integer.parseInt(record));
+                    data = "{\"message\":\"200 ok\"}";//Templates.generateValidationResponseJSON(true);
+                    System.out.println("Bro is validated");
+                    exchange.getResponseHeaders().set("Content-Type", "application/json");
+                    exchange.sendResponseHeaders(200, data.length());
+                    OutputStream os = exchange.getResponseBody();
+                    os.write(data.toString().getBytes());
+                    os.close();
+                }
+            }
+
+
+
+
+            // TODO: WORKING CODE THAT IS JUST NOT IN USE
+            /*
             try {
+
                 JSONObject obj = new JSONObject(body); // Parses the JSON From the Body
+                System.out.println(body);
                 System.out.println(obj.toString());
                 System.out.println(obj.isEmpty());
                 System.out.println(obj.has("senderecord"));
-                /*
-                 * Login Handler and Token Issuer, Yippee
-                 */
+                // Login Handler and Token Issuer, Yippee
                 if (obj.has("LoginRequest")) {
                     String username,passwordhash,sessionid;
                     username = obj.getJSONObject("LoginRequest").getString("username");
@@ -88,9 +113,9 @@ public class APIHandler implements HttpHandler {
                     }
 
                 }
-                /*
-                 * Validates Token's Authenticity
-                 */
+
+                 // Validates Token's Authenticity
+
                 if (obj.has("ValidateToken")) {
                     JSONObject token = obj.getJSONObject("ValidateToken");
                     String code = token.getString("token");
@@ -143,27 +168,20 @@ public class APIHandler implements HttpHandler {
                     os.close();
 
                 }
-                /*
-                 * Sends a message to the server backend.
-                 */
+
+                 // Sends a message to the server backend.
+
                 if (obj.has("Message")) {
                     Utils.Infoprintln("MESSAGE FROM [" + exchange.getRemoteAddress() + "]: " + obj.getString("Message"));
                 }
 
-                /*
-                 * Debug: Used to see what keys are being sent where.
-                 * Refer to https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
-                 * As well as https://docs.oracle.com/javaee/7/api/javax/json/stream/JsonParser.html
-                 * For understanding.
-                 *
-                 * Deprecated.
-                 */
+==
 
             } catch (Exception e) {
 
-                /*
-                 * If something goes wrong while parsing JSON, the syntax is most likely bad, blame it on the client.
-                 */
+
+                 // If something goes wrong while parsing JSON, the syntax is most likely bad, blame it on the client.
+
                 System.err.println(e);
                 exchange.getResponseHeaders().set("Content-Type", "application/json");
                 exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
@@ -174,6 +192,7 @@ public class APIHandler implements HttpHandler {
                 os.close();
                 return;
             }
+        */
 
 
             /*
