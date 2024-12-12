@@ -44,6 +44,7 @@ public class APIHandler implements HttpHandler {
                 body += (char) r;
             }
             Utils.Infoprintln("Request Body: " + body);
+            System.out.println("send help,pray our code compiles");
 
 
             /*
@@ -51,7 +52,9 @@ public class APIHandler implements HttpHandler {
              */
             try {
                 JSONObject obj = new JSONObject(body); // Parses the JSON From the Body
-
+                System.out.println(obj.toString());
+                System.out.println(obj.isEmpty());
+                System.out.println(obj.has("senderecord"));
                 /*
                  * Login Handler and Token Issuer, Yippee
                  */
