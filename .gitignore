@@ -5,3 +5,4 @@ ep/bin/Testing
 ep/cmake-build-*
 frmwk/node_modules
 web/.idea/dataSources/ 
+ds/.idea/misc.xml
