@@ -1,0 +1,41 @@
+:root {
+    --c-panel-primary: #e3e3ea;
+    --c-panel-secondary: #535a65;
+    --c-panel-tertiary: #9e9e9e;
+    --c-accent: #2b91ff;
+    --c-accent-error: #ff4a4a;
+    --c-accent-warning: #ffdc67;
+    --c-accent-green: #00d412;
+}
+html,body {
+    margin: 0;
+    height: 100%;
+}
+#root {
+    background-image: url("/img/flyaway-bg.png");
+    display: flex;
+    flex-flow:column;
+    height: 100%;
+}
+.generic-header {
+    background-color: var(--c-panel-primary);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.generic-header-item {
+    user-select: none;
+    text-align:center;
+    margin:10px;
+    padding:10px;
+    line-height: 10px;
+    border-radius:5px;
+}
+.generic-header-item:hover {
+    background-color: var(--c-panel-tertiary);
+    text-align:center;
+    padding:10px;
+}
